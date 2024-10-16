@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Shared/style.dart';
 import 'package:projeto/pages/splashscreen.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: ThemeData(
+        fontFamily: MyFonts.fontPrimary,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),

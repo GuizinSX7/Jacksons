@@ -6,8 +6,10 @@ class MyColors{
   static const Color verdeTopGradiente = Color.fromARGB(255, 9, 119, 12);
   static const Color verdeBottomGraidente = Color.fromARGB(255, 115, 243, 119);
   static const Color preto = Colors.black;
+  static const Color pretotransparente = Color.fromARGB(35, 0, 0, 0);
+  static const Color cinzacaixatexto = Color(0xFFD9D9D9);
 } 
 
 class MyFonts{
-  static const String fontPrimary =  "Montserrat";
+  static const String fontPrimary =  "ABeeZee";
 }
