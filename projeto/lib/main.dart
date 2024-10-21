@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
-import 'package:projeto/pages/Pesquisa.dart';
 import 'package:projeto/pages/splashscreen.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => Pesquisa()
+        '/' : (context) => SplashScreen()
       }, 
     );
   }
