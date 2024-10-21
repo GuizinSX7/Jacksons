@@ -142,14 +142,33 @@ class _PlaylistState extends State<Playlist> {
 
               // Text "Música" below "Psychosocial"
               const SizedBox(height: 10), // Space between "Psychosocial" and "Música"
+              const Row(
+                children: [
+                  Text(
+                    "Música",
+                    style: TextStyle(
+                      color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                      fontSize: 16, // Font size
+                      fontWeight: FontWeight.w400, // Font weight
+                      height: 20 / 16, // Line height of 20px
+                    ),
+            ),
+              Icon(
+                Icons.circle,
+                size: 10,
+              ),
               Text(
-                "Música",
+                "Slipknot",
                 style: TextStyle(
-                  color: const Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                  color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
                   fontSize: 16, // Font size
                   fontWeight: FontWeight.w400, // Font weight
                   height: 20 / 16, // Line height of 20px
                 ),
+              ),
+                ]
+                              
+
               ),
 
               Row(
@@ -169,6 +188,87 @@ class _PlaylistState extends State<Playlist> {
                   ),
                 ],
               ),
+
+              // Text "Música" below "Psychosocial"
+              const SizedBox(height: 10), // Space between "Psychosocial" and "Música"
+              const Row(
+                children: [
+                  Text(
+                    "Música",
+                    style: TextStyle(
+                      color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                      fontSize: 16, // Font size
+                      fontWeight: FontWeight.w400, // Font weight
+                      height: 20 / 16, // Line height of 20px
+                    ),
+            ),
+              Icon(
+                Icons.circle,
+                size: 10,
+              ),
+              Text(
+                "Slipknot",
+                style: TextStyle(
+                  color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                  fontSize: 16, // Font size
+                  fontWeight: FontWeight.w400, // Font weight
+                  height: 20 / 16, // Line height of 20px
+                ),
+              ),
+                ]
+                              
+
+              ),
+
+                            Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Center items in the row
+                children: [
+                  Image.asset(
+                    'assets/slipknot_image.jpg',
+                    width: 50, // Set the desired width for the image
+                  ),
+                  const SizedBox(width: 10), // Space between image and text
+                  const Text(
+                    "Psychosocial",
+                    style: TextStyle(
+                      color: Colors.white, // Adding style for better readability
+                      fontSize: 20, // Optional: Adjust font size as desired
+                    ),
+                  ),
+                ],
+              ),
+
+              // Text "Música" below "Psychosocial"
+              const SizedBox(height: 10), // Space between "Psychosocial" and "Música"
+              const Row(
+                children: [
+                  Text(
+                    "Música",
+                    style: TextStyle(
+                      color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                      fontSize: 16, // Font size
+                      fontWeight: FontWeight.w400, // Font weight
+                      height: 20 / 16, // Line height of 20px
+                    ),
+            ),
+              Icon(
+                Icons.circle,
+                size: 10,
+              ),
+              Text(
+                "Slipknot",
+                style: TextStyle(
+                  color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                  fontSize: 16, // Font size
+                  fontWeight: FontWeight.w400, // Font weight
+                  height: 20 / 16, // Line height of 20px
+                ),
+              ),
+                ]
+                              
+
+              ),
+
             ],
           ),
         ),
