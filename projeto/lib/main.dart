@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
+import 'package:projeto/pages/Cadastro.dart';
+import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
 
 void main() {
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => SplashScreen()
+        '/' : (context) => SplashScreen(),
+        '/passwordreset' : (context) => resetpassword(),
+        '/Cadastro' : (context) => Cadastro()
       }, 
     );
   }
