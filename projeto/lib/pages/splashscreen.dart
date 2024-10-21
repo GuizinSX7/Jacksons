@@ -1,23 +1,34 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:projeto/Shared/style.dart';
-import 'package:projeto/pages/Login.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Navegar após um atraso
+    Future.delayed(Duration(seconds: 5), () {
+      Navigator.pushReplacementNamed(context, "/Login");
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      splash: Center(
-        child: 
-        Lottie.asset('assets/animation/Animation-1727374978983.json',
-        ),
-      ), 
-      nextScreen: const Login(),
-      duration: 2300,
+    return Scaffold(
       backgroundColor: MyColors.preto,
+      body: Center(
+        child: Lottie.asset(
+          'assets/animation/Animation-1727374978983.json',
+          width: 250
+        ),
+      ),
     );
   }
 }

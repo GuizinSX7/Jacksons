@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-
 import 'package:projeto/Shared/style.dart';
 
 class Login extends StatefulWidget {
@@ -13,9 +12,20 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _isChecked = false;
   bool _obscurePassword = true;
+  bool isLoginSelected = true; // Estado para indicar a página selecionada
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  void _togglePage(bool isLogin) {
+    setState(() {
+      isLoginSelected = isLogin;
+    });
+  }
+
+  void _navigateToPasswordReset() {
+    Navigator.pushNamed(context, '/passwordreset');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +60,63 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(height: 163),
+                SizedBox(height: 83),
+                // Barra de navegação
+                Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(  
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Login',
+                                    style: TextStyle(
+                                      color: isLoginSelected ? MyColors.roxo : MyColors.branco,
+                                      fontSize: 28,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 25.5),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(context, "/Cadastro"),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Registra-se',
+                                    style: TextStyle(
+                                      color: isLoginSelected ? MyColors.branco : MyColors.roxo,
+                                      fontSize: 24,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // Barra animada
+                        Positioned(
+                          left: isLoginSelected ? 0 : 100,
+                          bottom: 0,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                            height: 3,
+                            width: isLoginSelected ? 85.47 : 132,
+                            color: MyColors.roxo,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+                SizedBox(height: 40),
                 Column(
                   children: [
                     _buildTextField(
@@ -66,10 +132,9 @@ class _LoginState extends State<Login> {
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                          color: MyColors.pretotransparente, // Ajuste temporário
+                          color: MyColors.pretotransparente,
                         ),
                         onPressed: () {
-                          print('Ícone pressionado'); // Debug
                           setState(() {
                             _obscurePassword = !_obscurePassword;
                           });
@@ -107,7 +172,7 @@ class _LoginState extends State<Login> {
                           // Handle login logic here
                         },
                         child: Text(
-                          'Logar',
+                          isLoginSelected ? 'Logar' : 'Cadastrar',
                           style: TextStyle(fontSize: 24, color: MyColors.branco),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -115,6 +180,21 @@ class _LoginState extends State<Login> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    // Texto "Não lembro minha senha"
+                    GestureDetector(
+                      onTap: _navigateToPasswordReset,
+                      child: Text(
+                        'Não lembro minha senha',
+                        style: TextStyle(
+                          color: MyColors.branco,
+                          fontSize: 16,
+                          decoration: TextDecoration.underline, // Deixa o texto sublinhado
+                          decorationColor: MyColors.branco, // Cor do sublinhado, se necessário
+                          decorationThickness: 2.0, // Espessura do sublinhado, se desejado
                         ),
                       ),
                     ),
@@ -163,3 +243,4 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
