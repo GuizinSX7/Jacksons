@@ -4,6 +4,10 @@ import 'package:projeto/pages/Cadastro.dart';
 import 'package:projeto/pages/Login.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
+import 'pages/Podcasts.dart';
+import 'pages/Musics.dart';
+import 'pages/Home.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -22,12 +26,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/Home',
       routes: {
         '/' : (context) => SplashScreen(),
         '/Login' : (context) => Login(),
         '/passwordreset' : (context) => resetpassword(),
-        '/Cadastro' : (context) => Cadastro()
+        '/Cadastro' : (context) => Cadastro(),
+        '/Home': (context) => Home(),
+        '/Musics': (context) => Musics(),
+        '/Podcasts': (context) => Podcasts(),
       }, 
     );
   }
