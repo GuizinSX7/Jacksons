@@ -4,6 +4,7 @@ import 'package:projeto/pages/Cadastro.dart';
 import 'package:projeto/pages/Login.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
+import 'package:projeto/pages/Playlist.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,11 +25,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => SplashScreen(),
-        '/Login' : (context) => Login(),
-        '/passwordreset' : (context) => resetpassword(),
-        '/Cadastro' : (context) => Cadastro()
-      }, 
+        '/': (context) => SplashScreen(),
+        '/Login': (context) => Login(),
+        '/passwordreset': (context) => resetpassword(),
+        '/Cadastro': (context) => Cadastro()
+      },
     );
   }
 }
