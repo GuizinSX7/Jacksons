@@ -5,6 +5,9 @@ class Appbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Obtenha a rota atual
+    String currentRoute = ModalRoute.of(context)?.settings.name ?? '';
+
     return Container(
       color: Color.fromARGB(255, 34, 34, 34),
       child: Row(
@@ -13,13 +16,13 @@ class Appbar extends StatelessWidget {
           GestureDetector(
             child: Icon(Icons.person, color: Colors.white),
           ),
-          SizedBox(width: 15), // Espaçamento entre ícone e o primeiro botão
-          _buildButton(context, 'Home', '/Home'),
-          SizedBox(width: 15), // Espaçamento entre os botões
-          _buildButton(context, 'Musics', '/Musics'),
-          SizedBox(width: 15), // Espaçamento entre os botões
-          _buildButton(context, 'Playlist', '/Playlist'),
-          SizedBox(width: 15), // Espaçamento entre os botões
+          SizedBox(width: 10), // Espaçamento entre ícone e o primeiro botão
+          _buildButton(context, 'Home', '/Home', currentRoute),
+          SizedBox(width: 10), // Espaçamento entre os botões
+          _buildButton(context, 'Musics', '/Musics', currentRoute),
+          SizedBox(width: 10), // Espaçamento entre os botões
+          _buildButton(context, 'Podcasts', '/Podcasts', currentRoute),
+          SizedBox(width: 10), // Espaçamento entre os botões
           GestureDetector(
             onTap: () {
               // Adicione sua lógica de busca aqui
@@ -31,7 +34,9 @@ class Appbar extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(BuildContext context, String label, String route) {
+  Widget _buildButton(BuildContext context, String label, String route, String currentRoute) {
+    bool isActive = currentRoute == route; // Verifica se a rota atual é igual à rota do botão
+
     return TextButton(
       onPressed: () {
         Navigator.pushNamedAndRemoveUntil(context, route, (route) => false);
@@ -41,7 +46,7 @@ class Appbar extends StatelessWidget {
         style: TextStyle(color: Colors.white),
       ),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.black),
+        backgroundColor: MaterialStateProperty.all(isActive ? Colors.purple : Colors.black),
         side: MaterialStateProperty.all(BorderSide(color: Colors.purple)),
       ),
     );

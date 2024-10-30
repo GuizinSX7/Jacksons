@@ -19,7 +19,11 @@ class _HomeState extends State<Home> {
       body: Container(
         child: Column(
           children: [
-            Row(),
+            Row(
+              children: [
+                Text('Músicas mais tocadas em 2024')
+              ],
+            ),
             Row(),
             Row()
           ],
