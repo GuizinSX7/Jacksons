@@ -4,6 +4,7 @@ import 'package:projeto/pages/Cadastro.dart';
 import 'package:projeto/pages/Login.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
+import 'package:projeto/pages/Playlist.dart';
 import 'pages/Podcasts.dart';
 import 'pages/Musics.dart';
 import 'pages/Home.dart';
