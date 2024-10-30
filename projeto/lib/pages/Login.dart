@@ -20,12 +20,17 @@ class Login extends StatelessWidget {
                             height: 80.67,
                             ),
                         ),
-                        Text(
-                            'Jacksons',
-                            style: TextStyle(
-                                color: MyColors.branco,
-                                fontSize: 42,
-                            ),
+                        GestureDetector(
+                          child: Text(
+                              'Jacksons',
+                              style: TextStyle(
+                                  color: MyColors.branco,
+                                  fontSize: 42,
+                              ),
+                          ),
+                          onTap: () {
+                            Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+                          },
                         ),
                     ],
                 )
