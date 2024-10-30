@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ThemeData(
         fontFamily: MyFonts.fontPrimary,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        brightness: Brightness.dark,
         useMaterial3: true,
       ),
       initialRoute: '/Home',
