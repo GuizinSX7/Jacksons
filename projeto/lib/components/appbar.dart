@@ -26,7 +26,7 @@ class Appbar extends StatelessWidget {
           SizedBox(width: 9), // Espaçamento entre os botões
           GestureDetector(
             onTap: () {
-              // Adicione sua lógica de busca aqui
+              Navigator.pushNamedAndRemoveUntil(context, '/Pesquisa', (route) => false);
             },
             child: Icon(Icons.search, color: MyColors.roxo),
           ),

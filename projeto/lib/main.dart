@@ -9,7 +9,7 @@ import 'pages/Podcasts.dart';
 import 'pages/Musics.dart';
 import 'pages/Home.dart';
 import 'pages/MusicaSelecionada.dart';
-
+import 'pages/Pesquisa.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/Musics': (context) => Musics(),
         '/Podcasts': (context) => Podcasts(),
         '/MusicaSelecionada' : (context) => Musicaselecionada(),
+        '/Pesquisa': (context) => Pesquisa(),
       }, 
     );
   }
