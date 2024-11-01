@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: MyFonts.fontPrimary,
         brightness: Brightness.dark,
+        primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
       initialRoute: '/',

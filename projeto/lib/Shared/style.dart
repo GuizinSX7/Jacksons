@@ -8,6 +8,8 @@ class MyColors{
   static const Color preto = Colors.black;
   static const Color pretotransparente = Color.fromARGB(35, 0, 0, 0);
   static const Color cinzacaixatexto = Color(0xFFD9D9D9);
+  static const Color checkbox = Color(0x00212121);
+  static const Color vermelho = Colors.red;
 } 
 
 class MyFonts{
