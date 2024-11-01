@@ -51,31 +51,31 @@ class _PlaylistState extends State<Playlist> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Row(
-children: [
-  const Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8.0),
-    child: Icon(Icons.search, color: Colors.white70, size: 20), // Magnifying glass icon
-  ),
-  Expanded(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start, // Align items to the start
-      children: [
-        Expanded(
-          child: TextField(
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 3), // Adjust vertical padding
-              border: InputBorder.none,
-              hintText: 'Procurar nesta playlist',
-              hintStyle: TextStyle(color: Colors.white70), // Hint color
-            ),
-            style: const TextStyle(fontSize: 12), // Font size
-            textAlign: TextAlign.left, // Align text to the left
-          ),
-        ),
-      ],
-    ),
-  ),
-],
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Icon(Icons.search, color: Colors.white70, size: 20), // Magnifying glass icon
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start, // Align items to the start
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 3), // Adjust vertical padding
+                              border: InputBorder.none,
+                              hintText: 'Procurar nesta playlist',
+                              hintStyle: TextStyle(color: Colors.white70), // Hint color
+                            ),
+                            style: const TextStyle(fontSize: 12), // Font size
+                            textAlign: TextAlign.left, // Align text to the left
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                     ),
                   ),
                   const SizedBox(width: 10),
