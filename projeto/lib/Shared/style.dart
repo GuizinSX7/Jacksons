@@ -13,3 +13,4 @@ class MyColors{
 class MyFonts{
   static const String fontPrimary =  "ABeeZee";
 }
+

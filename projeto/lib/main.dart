@@ -8,6 +8,7 @@ import 'package:projeto/pages/Playlist.dart';
 import 'pages/Podcasts.dart';
 import 'pages/Musics.dart';
 import 'pages/Home.dart';
+import 'pages/MusicaSelecionada.dart';
 
 
 void main() {
@@ -27,15 +28,16 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      initialRoute: '/Home',
+      initialRoute: '/',
       routes: {
         '/' : (context) => SplashScreen(),
-        '/Login' : (context) => Login(),
+        '/Login' : (context) => LoginPage(),
         '/passwordreset' : (context) => resetpassword(),
         '/Cadastro' : (context) => Cadastro(),
         '/Home': (context) => Home(),
         '/Musics': (context) => Musics(),
         '/Podcasts': (context) => Podcasts(),
+        '/MusicaSelecionada' : (context) => Musicaselecionada(),
       }, 
     );
   }
