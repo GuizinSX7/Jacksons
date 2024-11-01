@@ -10,6 +10,12 @@ class Musicaselecionada extends StatefulWidget {
 class _MyWidgetState extends State<Musicaselecionada> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: FloatingActionButton(onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+        }),
+      ),
+    );
   }
 }

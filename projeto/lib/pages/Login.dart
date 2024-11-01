@@ -42,6 +42,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ],
+
+              
             ),
             const SizedBox(height: 163,),
             CustomTextFieldNameUser(controller: _controlleruser),
@@ -50,6 +52,9 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+      }),
     );
   }
 }
