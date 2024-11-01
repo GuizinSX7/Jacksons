@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      initialRoute: '/Home',
+      initialRoute: '/',
       routes: {
         '/' : (context) => SplashScreen(),
-        '/Login' : (context) => Login(),
+        '/Login' : (context) => LoginPage(),
         '/passwordreset' : (context) => resetpassword(),
         '/Cadastro' : (context) => Cadastro(),
         '/Home': (context) => Home(),
