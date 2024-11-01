@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
 import 'package:projeto/pages/Cadastro.dart';
 import 'package:projeto/pages/Login.dart';
+import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
 import 'package:projeto/pages/Playlist.dart';
 import 'pages/Podcasts.dart';
 import 'pages/Musics.dart';
 import 'pages/Home.dart';
-
+import 'pages/MusicaSelecionada.dart';
+import 'pages/Pesquisa.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,6 +39,10 @@ class MyApp extends StatelessWidget {
         '/Home': (context) => Home(),
         '/Musics': (context) => Musics(),
         '/Podcasts': (context) => Podcasts(),
+        '/MusicaSelecionada' : (context) => Musicaselecionada(),
+        '/Pesquisa': (context) => Pesquisa(),
+        '/Musico' : (context) => Musico(),
+        '/Playlist' : (context) => Playlist()
       }, 
     );
   }
