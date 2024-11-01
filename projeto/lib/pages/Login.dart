@@ -42,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.white,
                     ),
                   ),
-<<<<<<< HEAD
                 ],
               ),
               const SizedBox(height: 163,),
@@ -52,23 +51,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
-=======
-                ),
-              ],
-
-              
-            ),
-            const SizedBox(height: 163,),
-            CustomTextFieldNameUser(controller: _controlleruser),
-            const SizedBox(height: 47,),
-            CustomTextFieldPassword(controller: _controllerpassword),
-          ],
->>>>>>> aa77faefcf4bd959f9227474e532e32a0e56fa16
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
-      }),
     );
   }
 }
