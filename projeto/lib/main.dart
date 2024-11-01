@@ -39,12 +39,9 @@ class MyApp extends StatelessWidget {
         '/Musics': (context) => Musics(),
         '/Podcasts': (context) => Podcasts(),
         '/MusicaSelecionada' : (context) => Musicaselecionada(),
-<<<<<<< HEAD
         '/Pesquisa': (context) => Pesquisa(),
-=======
         '/Musico' : (context) => Musico(),
         '/Playlist' : (context) => Playlist()
->>>>>>> 1bde95611c4338b56e448b08e94dd6dc1c1d2294
       }, 
     );
   }
