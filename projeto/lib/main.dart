@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
 import 'package:projeto/pages/Cadastro.dart';
 import 'package:projeto/pages/Login.dart';
+import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
 import 'package:projeto/pages/Playlist.dart';
@@ -38,7 +39,12 @@ class MyApp extends StatelessWidget {
         '/Musics': (context) => Musics(),
         '/Podcasts': (context) => Podcasts(),
         '/MusicaSelecionada' : (context) => Musicaselecionada(),
+<<<<<<< HEAD
         '/Pesquisa': (context) => Pesquisa(),
+=======
+        '/Musico' : (context) => Musico(),
+        '/Playlist' : (context) => Playlist()
+>>>>>>> 1bde95611c4338b56e448b08e94dd6dc1c1d2294
       }, 
     );
   }
