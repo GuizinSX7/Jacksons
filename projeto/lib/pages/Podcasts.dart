@@ -12,9 +12,9 @@ class _PodcastsState extends State<Podcasts> {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 34, 34, 34),
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 34, 34, 34),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
     );
