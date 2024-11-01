@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/Shared/style.dart';
 
 class Appbar extends StatelessWidget {
   const Appbar({super.key});
@@ -14,20 +15,20 @@ class Appbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            child: Icon(Icons.person, color: Colors.white),
+            child: Icon(Icons.person_outline, color: MyColors.roxo),
           ),
-          SizedBox(width: 10), // Espaçamento entre ícone e o primeiro botão
+          SizedBox(width: 9), // Espaçamento entre ícone e o primeiro botão
           _buildButton(context, 'Home', '/Home', currentRoute),
-          SizedBox(width: 10), // Espaçamento entre os botões
-          _buildButton(context, 'Musics', '/Musics', currentRoute),
-          SizedBox(width: 10), // Espaçamento entre os botões
+          SizedBox(width: 9), // Espaçamento entre os botões
+          _buildButton(context, 'Musicas', '/Musics', currentRoute),
+          SizedBox(width: 9), // Espaçamento entre os botões
           _buildButton(context, 'Podcasts', '/Podcasts', currentRoute),
-          SizedBox(width: 10), // Espaçamento entre os botões
+          SizedBox(width: 9), // Espaçamento entre os botões
           GestureDetector(
             onTap: () {
               // Adicione sua lógica de busca aqui
             },
-            child: Icon(Icons.search, color: Colors.purple),
+            child: Icon(Icons.search, color: MyColors.roxo),
           ),
         ],
       ),
@@ -46,8 +47,8 @@ class Appbar extends StatelessWidget {
         style: TextStyle(color: Colors.white),
       ),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(isActive ? Colors.purple : Colors.black),
-        side: MaterialStateProperty.all(BorderSide(color: Colors.purple)),
+        backgroundColor: MaterialStateProperty.all(isActive ? MyColors.roxo : Colors.black),
+        side: MaterialStateProperty.all(BorderSide(color: MyColors.roxo)),
       ),
     );
   }
