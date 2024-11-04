@@ -11,8 +11,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _controlleruser = TextEditingController(); // Controller do usuário
-  final TextEditingController _controllerpassword = TextEditingController(); // Controller da senha
+  final TextEditingController _controlleremailLogin = TextEditingController(); // Controller do usuário
+  final TextEditingController _controllerpasswordLogin = TextEditingController(); // Controller da senha
+  final TextEditingController _controleruserCadastro = TextEditingController();
+  final TextEditingController _controleremailCadastro = TextEditingController();
+  final TextEditingController _controlerpasswordCadastro = TextEditingController();
+  final TextEditingController _controlerconfirmpasswordCadastro = TextEditingController();
   bool _isChecked = false; // Variável para a checkbox
 
   @override
@@ -23,9 +27,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Form(
           child: Column(
             children: [
-              const SizedBox(height: 83,),
-              
-              const SizedBox(height: 163),
+              const SizedBox(height: 140),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -48,9 +50,14 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 163,),
               LoginCompWidget(
-                userController: _controlleruser,
-                passwordController: _controllerpassword,
+                emailController: _controlleremailLogin,
+                passwordController: _controllerpasswordLogin,
               ),
+            //   CustomTextFieldPassword(
+            //     usernameController: _controleruserCadastro, 
+            //     emailController: _controleremailCadastro, 
+            //     passwordController: _controlerpasswordCadastro, 
+            //     confirmPasswordController: _controlerconfirmpasswordCadastro)
             ],
           ),
         ),

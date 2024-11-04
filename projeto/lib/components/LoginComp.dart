@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
 
 class LoginCompWidget extends StatefulWidget {
-  final TextEditingController userController;
+  final TextEditingController emailController;
   final TextEditingController passwordController;
   final String hintText;
 
   const LoginCompWidget({
     Key? key,
-    required this.userController,
+    required this.emailController,
     required this.passwordController,
     this.hintText = "Nome de usuário",
   }) : super(key: key);
@@ -37,7 +37,7 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
         child: Column(
           children: [
             TextFormField(
-              controller: widget.userController,
+              controller: widget.emailController,
               decoration: InputDecoration(
                 hintText: widget.hintText,
                 border: OutlineInputBorder(
