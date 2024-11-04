@@ -23,7 +23,9 @@ class _LoginPageState extends State<LoginPage> {
         child: Form(
           child: Column(
             children: [
-              const SizedBox(height: 140),
+              const SizedBox(height: 83,),
+              
+              const SizedBox(height: 163),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

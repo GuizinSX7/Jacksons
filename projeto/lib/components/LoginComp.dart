@@ -20,8 +20,6 @@ class LoginCompWidget extends StatefulWidget {
 class _LoginCompWidgetState extends State<LoginCompWidget> {
   bool _obscureText = true;
   bool _isChecked = false;
-  String _errorMessagePassword = "";
-  String _errorMessageUser = "";
   final _formKey = GlobalKey<FormState>();
 
   void _togglePasswordVisibility() {
@@ -34,10 +32,11 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 356,
-      child: Column(
-        children: [
-          Form(
-            child: TextFormField(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
               controller: widget.userController,
               decoration: InputDecoration(
                 hintText: widget.hintText,
@@ -56,12 +55,52 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
                 fontSize: 18,
                 color: MyColors.preto,
               ), 
+              validator: (String? user) {
+                if (user == null || user.isEmpty) {
+                  return "O nome de usuário não pode estar vazio";
+                }
+                if (user.length < 3) {
+                  return "O nome de usuário deve conter pelo menos 3 caracteres";
+                }
+                if (RegExp(r'[^a-zA-Z]').hasMatch(user)) {
+                  return "O nome de usuário deve conter apenas letras";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 47,), // Espaço entre os campos
+            TextFormField(
+              controller: widget.passwordController, 
+              obscureText: _obscureText,
+              decoration: InputDecoration(
+                hintText: "Senha", 
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(102),
+                ),
+                filled: true,
+                fillColor: MyColors.cinzacaixatexto,
+                hintStyle: const TextStyle(
+                  fontSize: 18,
+                  color: MyColors.pretotransparente,
+                ),
+                contentPadding: const EdgeInsets.only(left: 16, top: 14),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                ),
+              ),
+              style: const TextStyle(
+                fontSize: 18,
+                color: MyColors.preto,
+              ),
               validator: (String? password) {
-                if (password == "" || password == null) {
+                if (password == null || password.isEmpty) {
                   return "A senha não pode estar vazia";
                 }
                 if (password.contains(" ")) {
-                  return "senha inválida";
+                  return "Senha inválida";
                 }
                 if (password.length < 8) {
                   return "A senha deve conter pelo menos 8 caracteres";
@@ -78,81 +117,20 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
                 return null;
               },
             ),
-          ),
-          Text(
-            _errorMessageUser,
-            style: const TextStyle(
-              color: MyColors.vermelho,
-              fontSize: 14,
-            ),
-            textAlign: TextAlign.start,
-          ),            
-          const SizedBox(height: 47), // Espaço entre os campos
-          TextField(
-            controller: widget.passwordController, 
-            obscureText: _obscureText,
-            decoration: InputDecoration(
-              hintText: "Senha", 
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(102),
-              ),
-              filled: true,
-              fillColor: MyColors.cinzacaixatexto,
-              hintStyle: const TextStyle(
-                fontSize: 18,
-                color: MyColors.pretotransparente,
-              ),
-              contentPadding: const EdgeInsets.only(left: 16, top: 14),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                ),
-                onPressed: _togglePasswordVisibility,
-              ),
-            ),
-            style: const TextStyle(
-              fontSize: 18,
-              color: MyColors.preto,
-            ),
-          ),
-          Text(
-            _errorMessagePassword,
-            style: const TextStyle(
-              color: MyColors.vermelho,
-              fontSize: 14,
-            ),
-            textAlign: TextAlign.start,
-          ),
-          Row(
+            const SizedBox(height: 20,),
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(padding: EdgeInsets.only(left: 10)),
-                GestureDetector(
-                  onTap: () {
+                Checkbox(
+                  value: _isChecked,
+                  activeColor: MyColors.roxo,
+                  checkColor: MyColors.branco,
+                  onChanged: (bool? value) {
                     setState(() {
-                      _isChecked = !_isChecked;
+                      _isChecked = value ?? false;
                     });
                   },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Checkbox(
-                        value: _isChecked,
-                        activeColor: MyColors.roxo,
-                        checkColor: MyColors.checkbox,
-                        onChanged: (bool ? value) {
-                          setState(() {
-                            _isChecked = value ?? false;
-                          });
-                        },
-                      ),
-                      if (_isChecked)
-                        const Icon(
-                          Icons.check,
-                          color: MyColors.branco,
-                        ),
-                    ],
-                  ),
                 ),
                 const Text(
                   "Lembre-se de mim",
@@ -161,9 +139,9 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
                     fontSize: 18,
                   ),
                 ),
-               ], 
+              ],
             ),
-            const SizedBox(height: 41,),
+            const SizedBox(height: 51,),
             SizedBox(
               width: 286,
               height: 50,
@@ -179,7 +157,7 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
                     'Logar',
                     style: TextStyle(
                       fontSize: 24,
-                      color: MyColors.branco
+                      color: MyColors.branco,
                     ),
                   ),
                 )
@@ -196,11 +174,13 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
                 ),
               ),
             )
-        ],
+          ],
+        ),
       ),
     );
   }
-  buttonEnterClick() {
+
+  void buttonEnterClick() {
     if (_formKey.currentState!.validate()) {
       print('form ok');
       Navigator.pushReplacementNamed(context, '/Home');
@@ -209,4 +189,3 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
     }
   }
 }
-
