@@ -13,7 +13,7 @@ class _MusicsState extends State<Musics> {
   final List<Map<String, dynamic>> musicas = [
     {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Cirice'},
     {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Hypnotize'},
-    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Life Eternal'},
+    {'image': 'assets/Devils_Guns.jpg', 'route': '/MusicaSelecionada', 'artista': 'guns&roses', 'nome': 'Life Eternal'},
     {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Aerials'},
     {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'He is'},
   ];
