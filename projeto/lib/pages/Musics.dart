@@ -21,12 +21,10 @@ class _MusicsState extends State<Musics> {
   final List<Map<String, dynamic>> albuns = [
     {'image': 'assets/bitous.png', 'route': '/Album'},
     {'image': 'assets/Devils_Guns.jpg', 'route': '/Album'},
-    {'image': 'assetes/engenharia_havaiana.jfif', 'route': '/Album'},
     {'image': 'assets/Miguel_jack_filho.jpg', 'route': '/Album'},
     {'image': 'assets/Roberto_Carlos.jpg', 'route': '/Album'},
     {'image': 'assets/bitous.png', 'route': '/Album'},
     {'image': 'assets/Devils_Guns.jpg', 'route': '/Album'},
-    {'image': 'assetes/engenharia_havaiana.jfif', 'route': '/Album'},
     {'image': 'assets/Miguel_jack_filho.jpg', 'route': '/Album'},
     {'image': 'assets/Roberto_Carlos.jpg', 'route': '/Album'},
   ];
