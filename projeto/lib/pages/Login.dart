@@ -52,9 +52,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
-      }),
+      
     );
   }
 }
