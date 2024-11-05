@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 
 class Musico extends StatefulWidget {
@@ -11,22 +13,30 @@ class _MusicoState extends State<Musico> {
   @override
   Widget build(BuildContext context) {
     final screenWidth =
-        MediaQuery.of(context).size.width; // Get the screen width
+        MediaQuery.of(context).size.width; 
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: [
-              Color(0xFF000000), // #000 59.6%
-              Color(0xFFAD3A3A), // #AD3A3A 100%
-            ],
-            stops: [0.6, 1.0],
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,  // Start from top
+              end: Alignment.bottomCenter,  // End at the bottom (180 degrees)
+              colors: [
+                Color(0xFF9C2C2C), // Lighter red shade
+                Color(0xFFAD3A3A), // Red
+                Color(0xFF7A2C2C), // Darker red shade
+                Color(0xFF000000), // Black
+              ],
+              stops: [
+                0.0, // Start at the top with red
+                0.2, // Lighter red around 25%
+                0.3,  // Darker red around 50%
+                0.6,  // End with black at the bottom
+              ],
+            ),
           ),
-        ),
-        child: Padding(
+          child: Padding(
             padding: const EdgeInsets.all(0),
             child: Column(
               children: [
@@ -34,21 +44,24 @@ class _MusicoState extends State<Musico> {
                   Stack(
                     children: [
                       const SizedBox(height: 40), // Increased space to lower the arrow
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Icon(Icons.arrow_back, color: Colors.white, size: 30), // Adjusted size
-                              width: 30,
-                            ),
-                          ],
-                        ),
                       Container(
                         width: screenWidth, // Set width to screen width
                         child: Image.asset(
                           'assets/corey_taylor.png',
-                          fit: BoxFit
-                              .cover, // Ensure the image covers the width while maintaining aspect ratio
+                          fit: BoxFit.cover, 
+                        ),
+                      ),
+                      Container(
+                        width: screenWidth,
+                        height: 210, // Adjust the height as needed
+                        color: Colors.black.withOpacity(0.4), // 40% opacity
+                      ),
+                      Positioned(
+                        bottom: 100, // Adjust this value as needed
+                        left: 16, // Adjust this value as needed
+                        child: Container(
+                          child: Icon(Icons.arrow_back, color: Colors.white, size: 30), // Adjusted size
+                          width: 30,
                         ),
                       ),
                       Positioned(
@@ -63,38 +76,40 @@ class _MusicoState extends State<Musico> {
                         ),
                       ),
                     ],
-                  ),
+                  )
+
                 ]),
                 Center(
-                    child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/download button.png',
-                        width: 28, // Reduced size
-                      ),
-                      const SizedBox(width: 8), // Reduced space
-                      Icon(
-                        Icons.person_add,
-                        size: 28, // Reduced size
-                        color: Color.fromRGBO(60, 57, 57, 1),
-                      ),
-                      const SizedBox(width: 8), // Reduced space
-                      Icon(
-                        Icons.more_vert,
-                        size: 28, // Reduced size
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                      const SizedBox(width: 8), // Reduced space
-                      Image.asset(
-                        'assets/Vector.png',
-                        width: 28, // Reduced size
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/download button.png',
+                          width: 28, // Reduced size
+                        ),
+                        const SizedBox(width: 8), // Reduced space
+                        Icon(
+                          Icons.person_add,
+                          size: 28, // Reduced size
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
+                        const SizedBox(width: 8), // Reduced space
+                        Icon(
+                          Icons.more_vert,
+                          size: 28, // Reduced size
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
+                        const SizedBox(width: 8), // Reduced space
+                        Image.asset(
+                          'assets/Vector (1).png',
+                          width: 28, // Reduced size
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+                ),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(13),
@@ -106,7 +121,7 @@ class _MusicoState extends State<Musico> {
                           "Popular",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold),
                         )
                       ],
@@ -118,6 +133,59 @@ class _MusicoState extends State<Musico> {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/duality_vol3.jpg',
+                              width: 70, // Reduced size
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Duality",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18, // Reduced font size
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "Música",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromRGBO(143, 137, 137, 0.30),
+                                        fontSize: 14, // Reduced font size
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.circle,
+                                      size: 8, // Reduced size
+                                      color: Color.fromRGBO(143, 137, 137, 0.30),
+                                    ),
+                                    const Text(
+                                      "Slipknot",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromRGBO(143, 137, 137, 0.30),
+                                        fontSize: 14, // Reduced font size
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 5),
                         // Psychosocial row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -170,7 +238,7 @@ class _MusicoState extends State<Musico> {
                           ],
                         ),
                         const SizedBox(height: 5), // Space between songs
-                    
+
                         // Aerials row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -222,9 +290,9 @@ class _MusicoState extends State<Musico> {
                             ),
                           ],
                         ),
-                    
+
                         const SizedBox(height: 5), // Space between songs
-                    
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -275,9 +343,9 @@ class _MusicoState extends State<Musico> {
                             ),
                           ],
                         ),
-                    
+
                         const SizedBox(height: 5), // Space between songs
-                    
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -328,9 +396,9 @@ class _MusicoState extends State<Musico> {
                             ),
                           ],
                         ),
-                    
+
                         const SizedBox(height: 5), // Space between songs
-                    
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -386,7 +454,9 @@ class _MusicoState extends State<Musico> {
                   ),
                 ),
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
