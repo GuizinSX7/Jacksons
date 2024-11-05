@@ -228,7 +228,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
   void buttonEnterClick() {
     if (_formKey.currentState!.validate()) {
       print('form ok');
-      Navigator.pushReplacementNamed(context, '/Home');
+      Navigator.pushReplacementNamed(context, '/Cadastro');
     } else {
       print('form erro');
     }
