@@ -11,6 +11,7 @@ import 'pages/Musics.dart';
 import 'pages/Home.dart';
 import 'pages/MusicaSelecionada.dart';
 import 'pages/Pesquisa.dart';
+import 'pages/Album.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/Musics',
       routes: {
         '/' : (context) => SplashScreen(),
         '/Login' : (context) => LoginPage(),
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         '/MusicaSelecionada' : (context) => Musicaselecionada(),
         '/Pesquisa': (context) => Pesquisa(),
         '/Musico' : (context) => Musico(),
-        '/Playlist' : (context) => Playlist()
+        '/Playlist' : (context) => Playlist(),
+        '/Album': (context) => Album()
       }, 
     );
   }
