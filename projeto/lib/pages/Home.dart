@@ -19,15 +19,29 @@ class _HomeState extends State<Home> {
   ];
 
   final List<Map<String, dynamic>> artistas = [
-    {'image': 'assets/corey_taylor.png', 'route': '/musico' }
+    {'image': 'assets/corey_taylor.png', 'route': '/musico' },
+     {'image': 'assets/slipknot_image.jpg', 'route': '/Musico' },
+    {'image': 'assets/Iron.jfif', 'route': '/Musico' },
+    {'image': 'assets/devil_ini.png', 'route': '/Musico' },
+    {'image': 'assets/corey_taylor.png', 'route': '/Musico' },
+    {'image': 'assets/slipknot_image.jpg', 'route': '/Musico' },
+    {'image': 'assets/Iron.jfif', 'route': '/Musico' },
+    {'image': 'assets/devil_ini.png', 'route': '/Musico' },
+     {'image': 'assets/slipknot_image.jpg', 'route': '/Musico' },
+    {'image': 'assets/Iron.jfif', 'route': '/Musico' },
+    {'image': 'assets/devil_ini.png', 'route': '/Musico' },
+    {'image': 'assets/corey_taylor.png', 'route': '/Musico' },
+    {'image': 'assets/slipknot_image.jpg', 'route': '/Musico' },
+    {'image': 'assets/Iron.jfif', 'route': '/Musico' },
+    {'image': 'assets/devil_ini.png', 'route': '/Musico' },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 34, 34, 34),
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 34, 34, 34),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
       body: Padding(
@@ -45,25 +59,32 @@ class _HomeState extends State<Home> {
             SizedBox(height: 13),
             _buildMusicCarousel(),
             SizedBox(height: 13),
-            Text(
-              'Tocadas recentemente',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: "ABeeZee",
-              ),
-              textAlign: TextAlign.left,
-            ),
+             Container(
+                child: Text(
+                  'Tocadas recentemente',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: "ABeeZee",
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                alignment: Alignment(-0.65 , 0),
+             ),
             SizedBox(height: 13),
             _buildMusicCarousel(),
             SizedBox(height: 13),
-            Text(
-              'Músicas mais tocadas em 2024',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: "ABeeZee",
-              ),
-              textAlign: TextAlign.left,
-            ),
+            Container(
+                 child: Text(
+                  'Artistas',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: "ABeeZee",
+                  ),
+                  textAlign: TextAlign.start,
+                             ),
+                alignment: Alignment(-0.85 , 0),
+               ),
+              SizedBox(height: 13),
 
 
             Container(
@@ -154,5 +175,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-

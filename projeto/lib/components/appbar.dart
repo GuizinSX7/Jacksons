@@ -10,7 +10,7 @@ class Appbar extends StatelessWidget {
     String currentRoute = ModalRoute.of(context)?.settings.name ?? '';
 
     return Container(
-      color: Color.fromARGB(255, 34, 34, 34),
+      color: Color.fromARGB(255, 0, 0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

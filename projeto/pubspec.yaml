@@ -28,7 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons: ^0.14.0
   flutter:
     sdk: flutter
   carousel_slider: ^5.0.0
@@ -41,7 +41,6 @@ dependencies:
   sqflite: ^2.4.0
 
 dev_dependencies:
-  
   flutter_test:
     sdk: flutter
 
@@ -95,5 +94,5 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
 flutter_icons:
-  android: true
-  image_path: "assets/icon.png" # Caminho para o ícone
+  android: "launcher_icon"
+  image_path: "assets/Icon.png" # Caminho para o ícone
