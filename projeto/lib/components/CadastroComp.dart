@@ -21,12 +21,19 @@ class CustomTextFieldPassword extends StatefulWidget {
 
 class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
   String password = "";
-  bool _obscureText = true;
+  bool _obscureTextPass = true;
+  bool _obscureTextConfirmPass = true;
   final _formKey = GlobalKey<FormState>();
 
   void _togglePasswordVisibility() {
     setState(() {
-      _obscureText = !_obscureText;
+      _obscureTextPass = !_obscureTextPass;
+    });
+  }
+
+  void _toggleConfirmPasswordVisibility(){
+    setState(() {
+      _obscureTextConfirmPass = !_obscureTextConfirmPass;
     });
   }
 
@@ -38,6 +45,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
         key: _formKey,
         child: Column(
           children: [
+            const SizedBox(height: 45,),
             TextFormField(
               controller: widget.usernameController,
               decoration: InputDecoration(
@@ -73,7 +81,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
             const SizedBox(height: 45,), // Espaço entre os campos
             TextFormField(
               controller: widget.passwordController, 
-              obscureText: _obscureText,
+              obscureText: _obscureTextPass,
               decoration: InputDecoration(
                 hintText: "Senha", 
                 border: OutlineInputBorder(
@@ -88,7 +96,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
                 contentPadding: const EdgeInsets.only(left: 16, top: 14),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    _obscureTextPass ? Icons.visibility_off : Icons.visibility,
                   ),
                   onPressed: _togglePasswordVisibility,
                 ),
@@ -122,7 +130,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
             const SizedBox(height: 45,),
             TextFormField(
               controller: widget.confirmPasswordController, 
-              obscureText: _obscureText,
+              obscureText: _obscureTextConfirmPass,
               decoration: InputDecoration(
                 hintText: "Confirmar senha", 
                 border: OutlineInputBorder(
@@ -137,9 +145,9 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
                 contentPadding: const EdgeInsets.only(left: 16, top: 14),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    _obscureTextConfirmPass ? Icons.visibility_off : Icons.visibility,
                   ),
-                  onPressed: _togglePasswordVisibility,
+                  onPressed: _toggleConfirmPasswordVisibility,
                 ),
               ),
               style: const TextStyle(

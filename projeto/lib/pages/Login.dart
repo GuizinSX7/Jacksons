@@ -11,13 +11,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _controlleremailLogin = TextEditingController(); // Controller do usuário
-  final TextEditingController _controllerpasswordLogin = TextEditingController(); // Controller da senha
+  final TextEditingController _controlleremailLogin = TextEditingController(); 
+  final TextEditingController _controllerpasswordLogin = TextEditingController(); 
   final TextEditingController _controleruserCadastro = TextEditingController();
   final TextEditingController _controleremailCadastro = TextEditingController();
   final TextEditingController _controlerpasswordCadastro = TextEditingController();
   final TextEditingController _controlerconfirmpasswordCadastro = TextEditingController();
-  bool _isChecked = false; // Variável para a checkbox
+  bool _isChecked = false;
+  bool _showLogin = true;
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +49,51 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 163,),
-              LoginCompWidget(
-                emailController: _controlleremailLogin,
-                passwordController: _controllerpasswordLogin,
+              const SizedBox(height: 83,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 28
+                      ),
+                    ),
+                    onTap: (){
+                      setState(() {
+                        setState(() {
+                          _showLogin = true;
+                        });
+                      });    
+                    },
+                  ),
+                  const SizedBox(width: 25.50,),
+                  GestureDetector(
+                    child: const Text(
+                      "Cadastre-se",
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _showLogin = false;
+                      });
+                    },
+                  ),
+                ],
               ),
-            //   CustomTextFieldPassword(
-            //     usernameController: _controleruserCadastro, 
-            //     emailController: _controleremailCadastro, 
-            //     passwordController: _controlerpasswordCadastro, 
-            //     confirmPasswordController: _controlerconfirmpasswordCadastro)
+            if (_showLogin) 
+              LoginCompWidget(
+                emailController: _controlleremailLogin, 
+                passwordController: _controllerpasswordLogin)
+            else 
+              CustomTextFieldPassword(
+                usernameController: _controleruserCadastro, 
+                emailController: _controleremailCadastro, 
+                passwordController: _controlerpasswordCadastro, 
+                confirmPasswordController: _controlerconfirmpasswordCadastro)
             ],
           ),
         ),

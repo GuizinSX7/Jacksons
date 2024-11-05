@@ -36,6 +36,7 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
         key: _formKey,
         child: Column(
           children: [
+            const SizedBox(height: 56,),
             TextFormField(
               controller: widget.emailController,
               decoration: InputDecoration(
@@ -173,7 +174,7 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
                   decoration: TextDecoration.underline,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
