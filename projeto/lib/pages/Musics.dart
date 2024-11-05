@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/components/appbar.dart';
 import 'package:projeto/Shared/style.dart';
+
 class Musics extends StatefulWidget {
   const Musics({super.key});
 
@@ -9,118 +10,149 @@ class Musics extends StatefulWidget {
 }
 
 class _MusicsState extends State<Musics> {
-  @override
-
-final List<Map<String, dynamic>> musicas = [
+  final List<Map<String, dynamic>> musicas = [
     {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Cirice'},
-    {'image': 'assets/MusicasSOAD/images.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Hypnotize'},
+    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Hypnotize'},
     {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Life Eternal'},
     {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Aerials'},
     {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'He is'},
-    
   ];
 
-final List<Map<String, dynamic>> albuns = [
-  {'image': 'assets/albuns/bitous.png', 'route': '/Album'},
-  {'image': 'assets/albuns/Devils_Guns.jpg', 'route': '/Album'},
-  {'image': 'assetes/albuns/engenharia_havaiana.jfif', 'route': '/Album'},
-  {'image': 'assets/albuns/Miguel_jack_filho.jpg', 'route': '/Album'},
-  {'image': 'assets/albuns/Roberto_Carlos.jpg', 'route': '/Album'},
-  {'image': 'assets/albuns/bitous.png', 'route': '/Album'},
-  {'image': 'assets/albuns/Devils_Guns.jpg', 'route': '/Album'},
-  {'image': 'assetes/albuns/engenharia_havaiana.jfif', 'route': '/Album'},
-  {'image': 'assets/albuns/Miguel_jack_filho.jpg', 'route': '/Album'},
-  {'image': 'assets/albuns/Roberto_Carlos.jpg', 'route': '/Album'},
-];
+  final List<Map<String, dynamic>> albuns = [
+    {'image': 'assets/bitous.png', 'route': '/Album'},
+    {'image': 'assets/Devils_Guns.jpg', 'route': '/Album'},
+    {'image': 'assetes/engenharia_havaiana.jfif', 'route': '/Album'},
+    {'image': 'assets/Miguel_jack_filho.jpg', 'route': '/Album'},
+    {'image': 'assets/Roberto_Carlos.jpg', 'route': '/Album'},
+    {'image': 'assets/bitous.png', 'route': '/Album'},
+    {'image': 'assets/Devils_Guns.jpg', 'route': '/Album'},
+    {'image': 'assetes/engenharia_havaiana.jfif', 'route': '/Album'},
+    {'image': 'assets/Miguel_jack_filho.jpg', 'route': '/Album'},
+    {'image': 'assets/Roberto_Carlos.jpg', 'route': '/Album'},
+  ];
 
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
-      body:Padding(
+      body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Músicas mais tocadas em 2024',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: "ABeeZee",
+            // Título das músicas favoritas
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                'Suas músicas favoritas',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: "ABeeZee",
+                ),
               ),
-              textAlign: TextAlign.left,
             ),
             SizedBox(height: 13),
             _buildMusicCarousel(),
             SizedBox(height: 13),
-             Container(
-                child: Text(
-                  'Tocadas recentemente',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: "ABeeZee",
+
+            // "Para fãs De" com a imagem circular
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                children: [
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/SOAD.jfif',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  textAlign: TextAlign.left,
-                ),
-                alignment: Alignment(-0.65 , 0),
-             ),
+                  SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Para fãs De',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "ABeeZee",
+                        ),
+                      ),
+                      Text(
+                        'System of Down',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: "ABeeZee",
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: 13),
+
             _buildMusicCarousel(),
             SizedBox(height: 13),
-            Container(
-                 child: Text(
-                  'Artistas',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: "ABeeZee",
-                  ),
-                  textAlign: TextAlign.start,
-                             ),
-                alignment: Alignment(-0.85 , 0),
-               ),
-              SizedBox(height: 13),
 
-
-            Container(
-     margin: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: albuns.map((item) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        item['image'],
-                        fit: BoxFit.cover,
-                        width: 86,
-                        height: 97,
-                      ),
-                    ),
-                  ],
+            // Título de "Artistas"
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                'Artistas',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: "ABeeZee",
                 ),
               ),
-            );
-          }).toList(),
-        ),
-      ),
-  ),// Você pode usar a mesma lista ou criar outra
+            ),
+            SizedBox(height: 13),
+
+            // Carrossel de álbuns
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: albuns.map((item) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                item['image'],
+                                fit: BoxFit.cover,
+                                width: 86,
+                                height: 97,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
+  // Função para construir o carrossel de músicas
   Widget _buildMusicCarousel() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -135,7 +167,7 @@ final List<Map<String, dynamic>> albuns = [
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
