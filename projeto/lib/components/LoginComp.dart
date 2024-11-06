@@ -4,13 +4,11 @@ import 'package:projeto/Shared/style.dart';
 class LoginCompWidget extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final String hintText;
 
   const LoginCompWidget({
     Key? key,
     required this.emailController,
     required this.passwordController,
-    this.hintText = "Nome de usuário",
   }) : super(key: key);
 
   @override
@@ -40,7 +38,7 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
             TextFormField(
               controller: widget.emailController,
               decoration: InputDecoration(
-                hintText: widget.hintText,
+                hintText: "Email",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(102),
                 ),
