@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
-import 'package:projeto/pages/Cadastro.dart';
-import 'package:projeto/pages/Login.dart';
+import 'package:projeto/pages/ContiCadastro.dart';
+import 'package:projeto/pages/ContaComp.dart';
 import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
@@ -31,15 +31,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
-      initialRoute: '/MusicaSelecionada',
+      initialRoute: '/',
       routes: {
-        // '/' : (context) => SplashScreen(),
-        // '/Login' : (context) => LoginPage(),
-        // '/passwordreset' : (context) => resetpassword(),
-        // '/Cadastro' : (context) => Cadastro(),
-        // '/Home': (context) => Home(),
-        // '/Musics': (context) => Musics(),
-        // '/Podcasts': (context) => Podcasts(),
+        '/' : (context) => SplashScreen(),
+        '/Login' : (context) => LoginPage(),
+        '/passwordreset' : (context) => resetpassword(),
+        '/Cadastro' : (context) => ContiCadastro(),
+        '/Home': (context) => Home(),
+        '/Musics': (context) => Musics(),
+        '/Podcasts': (context) => Podcasts(),
         '/MusicaSelecionada' : (context) => Musicaselecionada(),
         // '/Pesquisa': (context) => Pesquisa(),
         // '/Musico' : (context) => Musico(),

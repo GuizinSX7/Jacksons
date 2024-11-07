@@ -1,3 +1,3 @@
 # Jacksons
 
-- A equipe do jacksons apoia a pirataria
+a equipe do jacksons (não) apoia a pirataria
