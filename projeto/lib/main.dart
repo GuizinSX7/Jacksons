@@ -31,20 +31,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
-      initialRoute: '/Musics',
+      initialRoute: '/MusicaSelecionada',
       routes: {
-        '/' : (context) => SplashScreen(),
-        '/Login' : (context) => LoginPage(),
-        '/passwordreset' : (context) => resetpassword(),
-        '/Cadastro' : (context) => Cadastro(),
-        '/Home': (context) => Home(),
-        '/Musics': (context) => Musics(),
-        '/Podcasts': (context) => Podcasts(),
+        // '/' : (context) => SplashScreen(),
+        // '/Login' : (context) => LoginPage(),
+        // '/passwordreset' : (context) => resetpassword(),
+        // '/Cadastro' : (context) => Cadastro(),
+        // '/Home': (context) => Home(),
+        // '/Musics': (context) => Musics(),
+        // '/Podcasts': (context) => Podcasts(),
         '/MusicaSelecionada' : (context) => Musicaselecionada(),
-        '/Pesquisa': (context) => Pesquisa(),
-        '/Musico' : (context) => Musico(),
-        '/Playlist' : (context) => Playlist(),
-        '/Album': (context) => Album()
+        // '/Pesquisa': (context) => Pesquisa(),
+        // '/Musico' : (context) => Musico(),
+        // '/Playlist' : (context) => Playlist(),
+        // '/Album': (context) => Album()
       }, 
     );
   }
