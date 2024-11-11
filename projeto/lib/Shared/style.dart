@@ -11,6 +11,7 @@ class MyColors{
   static const Color checkbox = Color(0x00212121);
   static const Color vermelho = Colors.red;
   static const Color cinzaDate = Color.fromARGB(25, 118, 114, 114);
+  static const Color cinzacheck = Color(0xFF161616);
 } 
 
 class MyFonts{
