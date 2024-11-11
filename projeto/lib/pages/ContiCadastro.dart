@@ -220,30 +220,33 @@ class _ContiCadastroState extends State<ContiCadastro> {
                 ],
               ),
               const SizedBox(height: 24,),
-              Row(
-                children: [
-                  const SizedBox(height: 24,),
-                  Checkbox(
-                    value: isCheckedTermos,
-                    activeColor: MyColors.roxo,
-                    checkColor: MyColors.branco,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isCheckedTermos = value ?? false;
-                      });
-                    },
-                  ),
-                  const Flexible(
-                    child: Text(
-                      "Aceito os Termos e Condições de Uso do Jacksons e a Política e Privacidade",
-                      style: TextStyle(
-                        color: Colors.white, 
-                        fontSize: 16,
-                      ),
-                      softWrap: true,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Row(
+                  children: [
+                    const SizedBox(height: 24,),
+                    Checkbox(
+                      value: isCheckedTermos,
+                      activeColor: MyColors.roxo,
+                      checkColor: MyColors.branco,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isCheckedTermos = value ?? false;
+                        });
+                      },
                     ),
-                  )
-                ],
+                    const Flexible(
+                      child: Text(
+                        "Aceito os Termos e Condições de Uso do Jacksons e a Política e Privacidade",
+                        style: TextStyle(
+                          color: Colors.white, 
+                          fontSize: 16,
+                        ),
+                        softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
               ),
               const SizedBox(height: 49,),
               Container(

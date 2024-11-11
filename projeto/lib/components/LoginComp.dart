@@ -120,7 +120,6 @@ class _LoginCompWidgetState extends State<LoginCompWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Padding(padding: EdgeInsets.only(left: 10)),
                 Checkbox(
                   value: _isChecked,
                   activeColor: MyColors.roxo,
