@@ -11,10 +11,36 @@ class ContiCadastro extends StatefulWidget {
 class _ContiCadastroState extends State<ContiCadastro> {
   final TextEditingController _controllerDay = TextEditingController();
   final TextEditingController _controllerYears = TextEditingController();
+  bool isCheckedMasculino = false;
+  bool isCheckedFeminino = false;
+  bool isCheckedOutro = false;
+  bool isCheckedTermos = false;
+  final _formKey = GlobalKey<FormState>();
   String? _controllerMonth;
-  String? _selectedGender; 
+  String? _selectedGender;
 
-  final List<String> _months = List.generate(12, (index) => (index + 1).toString());
+  final List<String> _months =
+      List.generate(12, (index) => (index + 1).toString());
+
+  void _onCheckboxChanged(int index) {
+    setState(() {
+      if (index == 1) {
+        isCheckedMasculino = true;
+        isCheckedFeminino = false;
+        isCheckedOutro = false;
+      }
+      if (index == 2) {
+        isCheckedMasculino = false;
+        isCheckedFeminino = true;
+        isCheckedOutro = false;
+      }
+      if (index == 3) {
+        isCheckedMasculino = false;
+        isCheckedFeminino = false;
+        isCheckedOutro = true;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +48,7 @@ class _ContiCadastroState extends State<ContiCadastro> {
       backgroundColor: MyColors.preto,
       body: SingleChildScrollView(
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               const SizedBox(height: 71),
@@ -45,14 +72,16 @@ class _ContiCadastroState extends State<ContiCadastro> {
                   ),
                 ],
               ),
-              const SizedBox(height: 52,),
+              const SizedBox(
+                height: 52,
+              ),
               const Text(
                 "Falta pouco",
-                style: TextStyle(
-                  fontSize: 34
-                ),
+                style: TextStyle(fontSize: 34),
               ),
-              const SizedBox(height: 79,),
+              const SizedBox(
+                height: 79,
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
@@ -68,30 +97,55 @@ class _ContiCadastroState extends State<ContiCadastro> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),            
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
-                    SizedBox(
+                    Container(
                       width: 80,
                       height: 50,
+                      color: MyColors.cinzacheck,
                       child: TextFormField(
                         controller: _controllerDay,
                         decoration: const InputDecoration(
                           hintText: "Dia",
                           hintStyle: TextStyle(
-                            fontSize: 20
+                            fontSize: 20,
+                            color: MyColors.branco
                           ),
-                          contentPadding: EdgeInsets.only(left: 8, top: 15),
+                          contentPadding: EdgeInsets.only(left: 8,),
                         ),
+                        validator: (String? Dia) {
+                          if (Dia == null || Dia.isEmpty) {
+                            return "O dia não pode estar vazio";
+                          }
+                          final int? numero = int.tryParse(Dia);
+                          if (numero == null) {
+                            return "Por favor, insira um número válido";
+                          }
+                          if (numero > 31 || numero < 0) {
+                            return "Dia inválido";
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                    const SizedBox(width: 40,),
-                    SizedBox(
+                    const SizedBox(
+                      width: 40,
+                    ),
+                    Container(
                       width: 130,
                       height: 50,
+                      color: MyColors.cinzacheck,
                       child: DropdownButtonFormField<String>(
                         value: _controllerMonth,
-                        decoration: const InputDecoration(labelText: 'Mês'),
+                        decoration: const InputDecoration(
+                          labelText: 'Mês',
+                          labelStyle: TextStyle(
+                            color: MyColors.branco,
+                            fontSize: 20,
+                          ),
+                          contentPadding: EdgeInsets.only(left: 8,)
+                        ),
                         items: _months.map((month) {
                           return DropdownMenuItem(
                             value: month,
@@ -103,101 +157,173 @@ class _ContiCadastroState extends State<ContiCadastro> {
                             _controllerMonth = value;
                           });
                         },
-                        validator: (value) => value == null ? 'Informe o mês' : null,
+                        validator: (value) =>
+                            value == null ? 'Informe o mês' : null,
                       ),
                     ),
-                    const SizedBox(width: 40,),
-                    SizedBox(
+                    const SizedBox(
+                      width: 40,
+                    ),
+                    Container(
                       width: 80,
                       height: 50,
+                      color: MyColors.cinzacheck,
                       child: TextFormField(
                         controller: _controllerYears,
                         decoration: const InputDecoration(
                           hintText: "Ano",
                           hintStyle: TextStyle(
                             fontSize: 20,
+                            color: MyColors.branco
                           ),
-                          contentPadding: EdgeInsets.only(left: 8, top: 15),
+                          contentPadding: EdgeInsets.only(left: 8,),
                         ),
+                        validator: (String? Ano) {
+                          if (Ano == null || Ano.isEmpty) {
+                            return "O dia não pode estar vazio";
+                          }
+                          final int? numero = int.tryParse(Ano);
+                          if (numero == null) {
+                            return "Por favor, insira um número válido";
+                          }
+                          if (numero > 2010 || numero < 1924) {
+                            return "Dia inválido";
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 36,),
+              const SizedBox(
+                height: 36,
+              ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20), 
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
                   width: 430,
                   height: 25,
                   child: Text(
                     "Qual é seu gênero?",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: MyColors.branco
-                    ),
+                    style: TextStyle(fontSize: 18, color: MyColors.branco),
                   ),
                 ),
               ),
               Column(
                 children: [
-                  Container(
-                    width: 392,
-                    height: 51,
-                    decoration: BoxDecoration(
-                      color: MyColors.cinzaDate,  // A cor do fundo, que você pode personalizar conforme necessário
-                      borderRadius: BorderRadius.circular(8),  // Bordas arredondadas, se necessário
-                    ),
-                    child: RadioListTile<String>(
-                      title: const Text('Masculino'),
-                      value: 'Masculino', 
-                      groupValue: _selectedGender, 
-                      activeColor: MyColors.roxo,  // Cor do item ativo
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGender = value;  // Atualiza o valor de _selectedGender ao selecionar
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 11,),
-                  SizedBox(
-                    width: 392,
-                    height: 51,
-                    child: RadioListTile<String>(
-                      title: const Text('Feminino'),
-                      value: 'Feminino', 
-                      groupValue: _selectedGender, 
-                      activeColor: MyColors.roxo,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGender = value; 
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 11,),
-                  SizedBox(
-                    width: 392,
-                    height: 51,
-                    child: RadioListTile<String>(
-                      title: const Text('Outro'),
-                      value: 'Outro', 
-                      groupValue: _selectedGender, 
-                      activeColor: MyColors.roxo,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGender = value; 
-                        });
-                      },
-                    ),
-                  ),
+                  _buildCheckboxOption('Masculino', 1, isCheckedMasculino),
+                  const SizedBox(height: 11),
+                  _buildCheckboxOption('Feminino', 2, isCheckedFeminino),
+                  const SizedBox(height: 11),
+                  _buildCheckboxOption('Outro', 3, isCheckedOutro),
                 ],
               ),
+              const SizedBox(height: 24,),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Row(
+                  children: [
+                    const SizedBox(height: 24,),
+                    Checkbox(
+                      value: isCheckedTermos,
+                      activeColor: MyColors.roxo,
+                      checkColor: MyColors.branco,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isCheckedTermos = value ?? false;
+                        });
+                      },
+                    ),
+                    const Flexible(
+                      child: Text(
+                        "Aceito os Termos e Condições de Uso do Jacksons e a Política e Privacidade",
+                        style: TextStyle(
+                          color: Colors.white, 
+                          fontSize: 16,
+                        ),
+                        softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 49,),
+              Container(
+                width: 285,
+                height: 51,
+                child: ElevatedButton(
+                  onPressed: () {
+                    buttonEnterClick();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: MyColors.roxo,
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Logar',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: MyColors.branco,
+                      ),
+                    ),
+                  )
+                ),
+              ),
+              const SizedBox(height: 28,),
+              GestureDetector(
+                child: const Text(
+                  "Voltar",
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: MyColors.branco
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "/Login");
+                },
+              )
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _buildCheckboxOption(String label, int index, bool isChecked) {
+    return Container(
+      width: 382,
+      height: 51,
+      decoration: BoxDecoration(
+        color: MyColors.cinzacheck,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: CheckboxListTile(
+        title: Text(
+          label,
+          style: const TextStyle(
+            color: MyColors.branco,
+            fontSize: 16,
+          ),
+        ),
+        value: isChecked,
+        activeColor: MyColors.roxo,
+        checkColor: MyColors.branco,
+        onChanged: (bool? value) {
+          _onCheckboxChanged(index);
+        },
+        controlAffinity: ListTileControlAffinity.leading,
+      ),
+    );
+  }
+
+  void buttonEnterClick() {
+    if (_formKey.currentState!.validate()) {
+      print('form ok');
+      Navigator.pushReplacementNamed(context, '/Home');
+    } else {
+      print('form erro');
+    }
+  }
 }
+

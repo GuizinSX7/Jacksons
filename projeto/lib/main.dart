@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
-      initialRoute: '/MusicaSelecionada',
+      initialRoute: '/',
       routes: {
         '/' : (context) => SplashScreen(),
         '/Login' : (context) => LoginPage(),
