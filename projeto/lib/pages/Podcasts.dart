@@ -20,7 +20,7 @@ class _PodcastsState extends State<Podcasts> {
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
-      body: ,
+      body: Container(),
     );
   }
 }
