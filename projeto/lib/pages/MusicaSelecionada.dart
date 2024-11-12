@@ -35,8 +35,8 @@ class _MyWidgetState extends State<Musicaselecionada> {
       });
     });
 
-    // Directly play the music by URL using UrlSource (new API)
-    _audioPlayer.play(UrlSource('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'));
+    // Play the song from assets (using AssetSource)
+    _audioPlayer.play(AssetSource('AERIALS.mp3'));
   }
 
   @override
@@ -49,8 +49,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
     if (_isPlaying) {
       _audioPlayer.pause();
     } else {
-      // Play the audio and provide the URL (or file path/asset) here using UrlSource
-      _audioPlayer.play(UrlSource('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'));
+      _audioPlayer.play(AssetSource('AERIALS.mp3'));
     }
     setState(() {
       _isPlaying = !_isPlaying;
@@ -79,8 +78,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
           ),
           child: Column(
             children: [
-              const SizedBox(height: 50),
-
+              const SizedBox(height: 80),
               // Header Row with Icons and Playlist Name
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -89,7 +87,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
                   children: [
                     Icon(
                       Icons.arrow_drop_down,
-                      size: 40,
+                      size: 60,
                       color: Colors.white,
                     ),
                     Column(
@@ -113,24 +111,27 @@ class _MyWidgetState extends State<Musicaselecionada> {
                     ),
                     Icon(
                       Icons.more_vert,
-                      size: 40,
+                      size: 50,
                       color: Colors.white,
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 40),
-
-              // Album Artwork
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/aerials.png', width: 380),
-                ],
+              // Album Artwork with Border Radius
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: ClipRRect(
+                  child: Image.asset(
+                    'assets/aerials.png',
+                    width: 300,
+                    height: 300,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 50),
 
               // Song Info and Controls
               Padding(
@@ -138,7 +139,10 @@ class _MyWidgetState extends State<Musicaselecionada> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/aerials.png', width: 80),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset('assets/aerials.png', width: 80),
+                    ),
                     const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +150,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
                         Text(
                           'System of a Down - ',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             color: Colors.white,
                           ),
                         ),
@@ -154,99 +158,47 @@ class _MyWidgetState extends State<Musicaselecionada> {
                           'Aerials',
                           style: TextStyle(
                             color: MyColors.roxo,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(width: 12),
-                    Image.asset('assets/download button pressed.png', width: 35),
-                  ],
+                    Image.asset('assets/download button pressed.png',
+                    width: 35,),
+                                      ],
                 ),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
 
-              // Controls Row
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.speaker,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 16),
-                    Icon(
-                      Icons.fast_rewind,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 16),
-                    Spacer(),
-                    IconButton(
-                      icon: Icon(
-                        _isPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
-                        size: 50,
-                        color: Colors.white,
-                      ),
-                      onPressed: _togglePlayPause,
-                    ),
-                    const SizedBox(width: 16),
-                    Icon(
-                      Icons.fast_forward,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 16),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.repeat_rounded,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 8),
-                        Icon(
-                          Icons.share,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              // Music Progress Slider
-              const SizedBox(height: 30),
-
+              // Music Progress Slider (Wider)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
-                    Slider(
-                      value: _sliderValue,
-                      min: 0,
-                      max: _duration.inSeconds.toDouble(),
-                      onChanged: (value) {
-                        setState(() {
-                          _sliderValue = value;
-                        });
-                        _seekTo(value);
-                      },
-                      activeColor: Colors.green,
-                      inactiveColor: Colors.grey,
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           _currentPosition.toString().split('.').first,
                           style: TextStyle(color: Colors.white),
+                        ),
+                        Expanded(
+                          child: Slider(
+                            value: _sliderValue,
+                            min: 0,
+                            max: _duration.inSeconds.toDouble(),
+                            onChanged: (value) {
+                              setState(() {
+                                _sliderValue = value;
+                              });
+                              _seekTo(value);
+                            },
+                            activeColor: MyColors.roxo,
+                            inactiveColor: Colors.grey[700],
+                          ),
                         ),
                         Text(
                           _duration.toString().split('.').first,
@@ -258,7 +210,63 @@ class _MyWidgetState extends State<Musicaselecionada> {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
+
+              // Controls Row (Centered)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.speaker,
+                      size: 40,
+                      color: Colors.white.withOpacity(0.7),
+                    ),
+                    const SizedBox(width: 50),
+                    Icon(
+                      Icons.fast_rewind,
+                      size: 40,
+                      color: Colors.white.withOpacity(0.7),
+                    ),
+                    const Spacer(), // This spacer pushes the play button to the center
+                    IconButton(
+                      icon: Icon(
+                        _isPlaying
+                            ? Icons.pause_circle_filled
+                            : Icons.play_circle_filled,
+                        size: 60,
+                        color: Colors.white,
+                      ),
+                      onPressed: _togglePlayPause,
+                    ),
+                    const Spacer(), // This spacer pushes the play button to the center
+                    Icon(
+                      Icons.fast_forward,
+                      size: 40,
+                      color: Colors.white.withOpacity(0.7),
+                    ),
+                    const SizedBox(width: 24),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.repeat_rounded,
+                          size: 30,
+                          color: Colors.white.withOpacity(0.7),
+                        ),
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.share,
+                          size: 30,
+                          color: Colors.white.withOpacity(0.7),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 40),
             ],
           ),
         ),

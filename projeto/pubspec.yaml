@@ -69,6 +69,8 @@ flutter:
   assets:
     - assets/
     - assets/animation/Animation-1727374978983.json
+    - assets/AERIALS.mp3
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
