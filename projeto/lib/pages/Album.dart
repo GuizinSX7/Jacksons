@@ -3,13 +3,25 @@ import 'package:flutter/material.dart';
 class Album extends StatefulWidget {
   const Album({super.key});
 
+  
+
   @override
   State<Album> createState() => _AlbumState();
 }
 
+
+
 class _AlbumState extends State<Album> {
+
+  
   @override
+
+  
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(

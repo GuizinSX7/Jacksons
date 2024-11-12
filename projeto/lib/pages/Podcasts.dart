@@ -11,12 +11,16 @@ class Podcasts extends StatefulWidget {
 class _PodcastsState extends State<Podcasts> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
    return Scaffold(
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
+      body: ,
     );
   }
 }
