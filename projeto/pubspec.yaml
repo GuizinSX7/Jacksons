@@ -28,12 +28,16 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons: ^0.14.0
   flutter:
     sdk: flutter
-  
+  carousel_slider: ^5.0.0
   lottie: ^2.3.2
   animated_splash_screen: 1.3.0 
+  audioplayers: ^6.1.0
+  font_awesome_flutter: ^10.0.0
+
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -41,7 +45,6 @@ dependencies:
   sqflite: ^2.4.0
 
 dev_dependencies:
-  
   flutter_test:
     sdk: flutter
 
@@ -68,6 +71,8 @@ flutter:
   assets:
     - assets/
     - assets/animation/Animation-1727374978983.json
+    - assets/AERIALS.mp3
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
@@ -95,5 +100,5 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
 flutter_icons:
-  android: true
-  image_path: "assets/icon.png" # Caminho para o ícone
+  android: "launcher_icon"
+  image_path: "assets/Icon.png" # Caminho para o ícone

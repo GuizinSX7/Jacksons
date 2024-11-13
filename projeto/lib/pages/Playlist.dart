@@ -10,65 +10,97 @@ class Playlist extends StatefulWidget {
 class _PlaylistState extends State<Playlist> {
   @override
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
             colors: [
-              Color(0xFFAD3A3A),
-              Color(0xFF000000),
+              Color(0xFF000000), // #000 59.6%
+              Color(0xFFAD3A3A), // #AD3A3A 100%
             ],
-            stops: [0.1, 1.0],
+            stops: [0.6, 1.0],
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Add padding to the container
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start, // Align items at the top
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 20), // Space between the top row and next elements
-
+              const SizedBox(height: 40), // Increased space to lower the arrow
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 256, // Width equivalent to 256px
-                    height: 40, // Height equivalent to 30px
+                    child: Icon(Icons.arrow_back, color: Colors.white, size: 30), // Adjusted size
+                    width: 30,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20), // Space after the arrow
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 250, // Increased width
+                    height: 35, // Height remains the same
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(217, 217, 217, 0.15), // Background rgba(217, 217, 217, 0.15)
-                      borderRadius: BorderRadius.circular(5), // Border radius 5px
+                      color: Color.fromRGBO(217, 217, 217, 0.15),
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    child: TextField(
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
-                        border: InputBorder.none, // No border inside the TextField
-                        hintText: 'Nova Playlist',
-                      ),
-                      style: const TextStyle(fontSize: 14), // Font size inside text field
+                    child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Icon(Icons.search, color: Colors.white70, size: 20), // Magnifying glass icon
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start, // Align items to the start
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 3), // Adjust vertical padding
+                              border: InputBorder.none,
+                              hintText: 'Procurar nesta playlist',
+                              hintStyle: TextStyle(color: Colors.white70), // Hint color
+                            ),
+                            style: const TextStyle(fontSize: 12), // Font size
+                            textAlign: TextAlign.left, // Align text to the left
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 10), // Space between text field and button
-
+                ],
+                    ),
+                  ),
+                  const SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
-                      // Handle button tap
                       print('Classificar button pressed');
                     },
                     child: Container(
-                      width: 83, // Width equivalent to 83px
-                      height: 30, // Height equivalent to 30px
+                      width: 70, // Reduced width
+                      height: 28, // Reduced height
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(217, 217, 217, 0.15), 
-                        borderRadius: BorderRadius.circular(5), // Border radius 5px
+                        color: Color.fromRGBO(217, 217, 217, 0.15),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       child: Center(
                         child: Text(
                           'Classificar',
                           style: TextStyle(
-                            color: Colors.white, 
-                            fontSize: 13, // Font size
-                            fontWeight: FontWeight.w400, 
+                            color: Colors.white,
+                            fontSize: 12, // Font size
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -76,98 +108,204 @@ class _PlaylistState extends State<Playlist> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20), // Space between the top row and next elements
-
+              const SizedBox(height: 20),
               Expanded(
-                child: SingleChildScrollView( // Allow scrolling for the rest of the content
+                child: Center(
                   child: Column(
                     children: [
-                      // First image
                       Image.asset(
                         'assets/playlist.png',
-                        width: 200, // Width of the first image
+                        width: 200, // Increased size
                       ),
-                      const SizedBox(height: 20),
-
+                      const SizedBox(height: 15), // Reduced space
                       const Text(
                         'Nome da Playlist',
                         style: TextStyle(
                           color: Color(0xFFFFFFFF),
-                          fontSize: 30,
+                          fontSize: 26, // Font size
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      const SizedBox(height: 15), // Reduced space
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/download button.png',
+                              width: 28, // Reduced size
+                            ),
+                            const SizedBox(width: 8), // Reduced space
+                            Icon(
+                              Icons.person_add,
+                              size: 28, // Reduced size
+                              color: Color.fromRGBO(60, 57, 57, 1),
+                            ),
+                            const SizedBox(width: 8), // Reduced space
+                            Icon(
+                              Icons.more_vert,
+                              size: 28, // Reduced size
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                            const SizedBox(width: 8), // Reduced space
+                            Image.asset(
+                              'assets/Vector.png',
+                              width: 28, // Reduced size
+                            ),
+                          ],
+                        ),
+                      ),
                       const SizedBox(height: 20),
-
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/download button.png',
-                            width: 15,
-                            height: 15,
-                          ),
-                          Image.asset(
-                            'assets/Vector.png',
-                            width: 15,
-                            height: 15,
-                          ),
-                          Icon(
-                            Icons.more_vert, 
-                            size: 15,
-                            color: Colors.white,
-                          ),
-                          Icon(
-                            Icons.person_add,
-                            size: 15,
-                          ),
-                        ],
-                      ),
-              const SizedBox(height: 20), // Space between the top row and next elements
-
-                      // Row for image and text
+                      // Center container for aligning the songs
                       Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center, // Center items in the row
+                        child: Column(
                           children: [
-                            Image.asset(
-                              'assets/slipknot_image.jpg',
-                              width: 100, // Set the desired width for the image
-                            ),
-                            const SizedBox(width: 10), // Space between image and text
-                            Column(
+                            // Psychosocial row
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Psychosocial",
-                                  style: TextStyle(
-                                    color: Colors.white, // Adding style for better readability
-                                    fontSize: 20, // Optional: Adjust font size as desired
-                                  ),
+                                Image.asset(
+                                  'assets/slipknot_image.jpg',
+                                  width: 70, // Reduced size
                                 ),
-                                const SizedBox(height: 10), // Space between "Psychosocial" and "Música"
-                                const Row(
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Música",
+                                    const Text(
+                                      "Psychosocial",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                        fontSize: 16, // Font size
-                                        fontWeight: FontWeight.w400, // Font weight
-                                        height: 20 / 16, // Line height of 20px
+                                        color: Colors.white,
+                                        fontSize: 18, // Reduced font size
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.circle,
-                                      size: 10,
-                                      color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
+                                    const SizedBox(height: 2),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          "Música",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(143, 137, 137, 0.30),
+                                            fontSize: 14, // Reduced font size
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 8, // Reduced size
+                                          color: Color.fromRGBO(143, 137, 137, 0.30),
+                                        ),
+                                        const Text(
+                                          "Slipknot",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(143, 137, 137, 0.30),
+                                            fontSize: 14, // Reduced font size
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "Slipknot",
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 5), // Space between songs
+
+                            // Aerials row
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  'assets/aerials.png',
+                                  width: 70, // Reduced size
+                                ),
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Aerials",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                        fontSize: 16, // Font size
-                                        fontWeight: FontWeight.w400, // Font weight
-                                        height: 20 / 16, // Line height of 20px
+                                        color: Colors.white,
+                                        fontSize: 18, // Reduced font size
                                       ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          "Música",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(143, 137, 137, 0.30),
+                                            fontSize: 14, // Reduced font size
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 8, // Reduced size
+                                          color: Color.fromRGBO(143, 137, 137, 0.30),
+                                        ),
+                                        const Text(
+                                          "System of a Down",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(143, 137, 137, 0.30),
+                                            fontSize: 14, // Reduced font size
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 5), // Space between songs
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  'assets/devil_ini.png',
+                                  width: 70, // Reduced size
+                                ),
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "The Devil In I",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18, // Reduced font size
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          "Música",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(143, 137, 137, 0.30),
+                                            fontSize: 14, // Reduced font size
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 8, // Reduced size
+                                          color: Color.fromRGBO(143, 137, 137, 0.30),
+                                        ),
+                                        const Text(
+                                          "Slipknot",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(143, 137, 137, 0.30),
+                                            fontSize: 14, // Reduced font size
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -176,128 +314,14 @@ class _PlaylistState extends State<Playlist> {
                           ],
                         ),
                       ),
-
-                                    const SizedBox(height: 20), // Space between the top row and next elements
-
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center, // Center items in the row
-                          children: [
-                            Image.asset(
-                              'assets/slipknot_image.jpg',
-                              width: 100, // Set the desired width for the image
-                            ),
-                            const SizedBox(width: 10), // Space between image and text
-                            Column(
-                              children: [
-                                const Text(
-                                  "Psychosocial",
-                                  style: TextStyle(
-                                    color: Colors.white, // Adding style for better readability
-                                    fontSize: 20, // Optional: Adjust font size as desired
-                                  ),
-                                ),
-                                const SizedBox(height: 10), // Space between "Psychosocial" and "Música"
-                                const Row(
-                                  children: [
-                                    Text(
-                                      "Música",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                        fontSize: 16, // Font size
-                                        fontWeight: FontWeight.w400, // Font weight
-                                        height: 20 / 16, // Line height of 20px
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.circle,
-                                      size: 10,
-                                      color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                    ),
-                                    Text(
-                                      "Slipknot",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                        fontSize: 16, // Font size
-                                        fontWeight: FontWeight.w400, // Font weight
-                                        height: 20 / 16, // Line height of 20px
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-              const SizedBox(height: 20), // Space between the top row and next elements
-
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center, // Center items in the row
-                          children: [
-                            Image.asset(
-                              'assets/slipknot_image.jpg',
-                              width: 100, // Set the desired width for the image
-                            ),
-                            const SizedBox(width: 10), // Space between image and text
-                            Column(
-                              children: [
-                                const Text(
-                                  "Psychosocial",
-                                  style: TextStyle(
-                                    color: Colors.white, // Adding style for better readability
-                                    fontSize: 20, // Optional: Adjust font size as desired
-                                  ),
-                                ),
-                                const SizedBox(height: 10), // Space between "Psychosocial" and "Música"
-                                const Row(
-                                  children: [
-                                    Text(
-                                      "Música",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                        fontSize: 16, // Font size
-                                        fontWeight: FontWeight.w400, // Font weight
-                                        height: 20 / 16, // Line height of 20px
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.circle,
-                                      size: 10,
-                                      color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                    ),
-                                    Text(
-                                      "Slipknot",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(143, 137, 137, 0.30), // Color rgba(143, 137, 137, 0.30)
-                                        fontSize: 16, // Font size
-                                        fontWeight: FontWeight.w400, // Font weight
-                                        height: 20 / 16, // Line height of 20px
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-
-
-
-
-
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
               ),
             ],
-          ),
         ),
       ),
-    );
+    ));
   }
 }

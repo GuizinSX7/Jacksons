@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
-import 'package:projeto/pages/Cadastro.dart';
-import 'package:projeto/pages/Login.dart';
+import 'package:projeto/pages/ContiCadastro.dart';
+import 'package:projeto/pages/ContaComp.dart';
+import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/Perfil.dart';
-import 'package:projeto/pages/Pesquisa.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
 import 'package:projeto/pages/Resultadopesquisa.dart';
 
+import 'package:projeto/pages/Playlist.dart';
+import 'pages/Podcasts.dart';
+import 'pages/Musics.dart';
+import 'pages/Home.dart';
+import 'pages/MusicaSelecionada.dart';
+import 'pages/Pesquisa.dart';
+import 'pages/Album.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,15 +30,25 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ThemeData(
         fontFamily: MyFonts.fontPrimary,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        brightness: Brightness.dark,
+        primarySwatch: Colors.purple,
         useMaterial3: true,
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => SplashScreen(),
-        '/Perfil' : (context) => Perfil(),
+        '/' : (context) => SplashScreen(), 
+        '/Login' : (context) => LoginPage(),
         '/passwordreset' : (context) => resetpassword(),
-        '/Cadastro' : (context) => Cadastro()
+        '/Cadastro' : (context) => ContiCadastro(),
+        '/Home': (context) => Home(), 
+        '/Musics': (context) => Musics(), 
+        '/Podcasts': (context) => Podcasts(), 
+        '/MusicaSelecionada' : (context) => Musicaselecionada(),
+        '/Pesquisa': (context) => Pesquisa(),
+        '/Musico' : (context) => Musico(),
+        '/Playlist' : (context) => Playlist(),
+        '/Album': (context) => Album()
+
       }, 
     );
   }
