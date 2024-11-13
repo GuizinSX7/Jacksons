@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/Musico' : (context) => Musico(),
         '/Playlist' : (context) => Playlist(),
         '/Album': (context) => Album()
+
       }, 
     );
   }

@@ -64,7 +64,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -88,10 +88,15 @@ class _MyWidgetState extends State<Musicaselecionada> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.arrow_drop_down,
-                      size: 60,
-                      color: Colors.white,
+                    GestureDetector(
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        size: 60,
+                        color: Colors.white,
+                      ),
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, "/Home");
+                      },
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,9 +173,11 @@ class _MyWidgetState extends State<Musicaselecionada> {
                       ],
                     ),
                     const SizedBox(width: 12),
-                    Image.asset('assets/download button pressed.png',
-                    width: 35,),
-                                      ],
+                    Image.asset(
+                      'assets/download button pressed.png',
+                      width: 35,
+                    ),
+                  ],
                 ),
               ),
 
