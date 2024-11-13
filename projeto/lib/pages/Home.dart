@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   ];
 
   final List<Map<String, dynamic>> artistas = [
-    {'image': 'assets/corey_taylor.png', 'route': '/musico' },
+    {'image': 'assets/corey_taylor.png', 'route': '/Musico' },
      {'image': 'assets/slipknot_image.jpg', 'route': '/Musico' },
     {'image': 'assets/Iron.jfif', 'route': '/Musico' },
     {'image': 'assets/devil_ini.png', 'route': '/Musico' },
