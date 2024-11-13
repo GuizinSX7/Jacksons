@@ -23,7 +23,10 @@ class _PesquisaState extends State<Pesquisa> {
                 hintText: 'O que você quer ouvir?',
                 hintStyle:
                     const TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black, // Define a cor do ícone como preto
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(3),
                 ),
@@ -45,7 +48,7 @@ class _PesquisaState extends State<Pesquisa> {
             ),
             const SizedBox(height: 20),
             Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.bottomLeft,                  
               child: Row(
                 children: [
                   Container(
@@ -59,6 +62,7 @@ class _PesquisaState extends State<Pesquisa> {
                       ),
                     ),
                   ),
+
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,6 +129,7 @@ class _PesquisaState extends State<Pesquisa> {
                 ],
               ),
             ),
+
             const SizedBox(height: 10),
             Align(
               alignment: Alignment.bottomLeft,
