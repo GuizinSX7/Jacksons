@@ -11,23 +11,46 @@ class Podcasts extends StatefulWidget {
 class _PodcastsState extends State<Podcasts> {
   final List<Map<String, String>> podcasts = [
     {
-      'title': 'Igão & Mítico - Podpah',
-      'image': 'assets/aerials.png', // Substitua pelo caminho da sua imagem
-      'duration': '2 hrs 15 mins'
+      'title': 'Podcast dos Jacksons',
+      'image': 'assets/podcast1.jfif', // Substitua pelo caminho da sua imagem
+      'duration': '2 hrs 15 mins',
+      'icon': 'assets/icon.png', // Adicione o caminho do ícone desejado
+      'textBaixo': 'JackSONS!!!! ',
+      'color': '0xFF000000', // Cor hexadecimal em String
+      'colorBorder': '0xFF830DEF', // Cor hexadecimal da borda
     },
     {
-      'title': 'Flow Podcast',
-      'image': 'assets/aerials.png', // Substitua pelo caminho da sua imagem
-      'duration': '1 hr 45 mins'
+      'title': 'Igão & mitico',
+      'image': 'assets/Podcast2.jpeg', // Substitua pelo caminho da sua imagem
+      'duration': '1 hr 10 mins',
+      'icon': 'assets/PodcastIcon.jfif', // Adicione o caminho do ícone desejado
+      'textBaixo': 'igão brabo ai ',
+      'color': '0xFF06A3C12', // Cor hexadecimal em String
+      'colorBorder': '0xFFFFFFFF', // Cor hexadecimal da borda
+    },
+    {
+      'title': 'Jacksons a criação',
+      'image': 'assets/Podcast3.jfif', // Substitua pelo caminho da sua imagem
+      'duration': '5 hrs 25 mins',
+      'icon': 'assets/icon.png', // Adicione o caminho do ícone desejado
+      'textBaixo': 'brabo o create tlgd',
+      'color': '0xFF000000', // Cor hexadecimal em String
+      'colorBorder': '0xFF830DEF', // Cor hexadecimal da borda
+    },
+    {
+      'title': 'Flow PodeCaste',
+      'image': 'assets/Podcast4.jpg', // Substitua pelo caminho da sua imagem
+      'duration': '3 hrs 12 mins',
+      'icon': 'assets/flowIcon.png', // Adicione o caminho do ícone desejado
+      'textBaixo': 'sdds do mano monarquia',
+      'color': '0xFF000000', // Cor hexadecimal em String
+      'colorBorder': '0xFF830DEF', // Cor hexadecimal da borda
     },
     // Adicione mais podcasts aqui, se desejar
   ];
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
@@ -42,6 +65,10 @@ class _PodcastsState extends State<Podcasts> {
             title: podcasts[index]['title']!,
             image: podcasts[index]['image']!,
             duration: podcasts[index]['duration']!,
+            icon: podcasts[index]['icon']!,
+            textBaixo: podcasts[index]['textBaixo']!,
+            color: Color(int.parse(podcasts[index]['color']!)),
+            colorBorder: Color(int.parse(podcasts[index]['colorBorder']!)),
           );
         },
       ),
@@ -53,8 +80,20 @@ class PodcastCard extends StatelessWidget {
   final String title;
   final String image;
   final String duration;
+  final String icon;
+  final String textBaixo;
+  final Color color;
+  final Color colorBorder;
 
-  PodcastCard({required this.title, required this.image, required this.duration});
+  PodcastCard({
+    required this.title,
+    required this.image,
+    required this.duration,
+    required this.icon,
+    required this.textBaixo,
+    required this.color,
+    required this.colorBorder,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,43 +101,89 @@ class PodcastCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
+          color: color,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.purple, width: 2), // Borda roxa
+          border: Border.all(
+              color: colorBorder, width: 2), // Borda com cor personalizada
         ),
-        child: Card(
-          color: Colors.grey[900],
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)), // Borda um pouco menor para combinar com o container
-          elevation: 4,
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(13)),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: 200, // Definindo uma altura fixa para a imagem
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Título, ícone e duração no topo em linhas separadas
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(13), bottom: Radius.circular(13)),
+                        child: Image.asset(
+                          icon,
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        title,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    duration,
+                    style: TextStyle(color: Colors.grey[400]),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      duration,
-                      style: TextStyle(color: Colors.grey[400]),
-                    ),
-                  ],
-                ),
+            ),
+            SizedBox(height: 3),
+            ClipRRect(
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 150,
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 3),
+            // Texto abaixo da imagem com cor de fundo personalizada
+            Container(
+              color: color,
+              width: double.infinity,
+              padding: EdgeInsets.all(7.0),
+              child: Text(
+                ' ${textBaixo} \n ${duration}',
+                style: TextStyle(color: Colors.grey, fontSize: 9),
+                
+              ),
+            ),
+            SizedBox(height: 14),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.replay, color: Colors.white),
+                  Row(
+                    children: [
+                      Icon(Icons.more_vert, color: Colors.white),
+                      SizedBox(width: 8), // Espaço entre os ícones
+                      Icon(Icons.play_arrow, color: Colors.white,),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
