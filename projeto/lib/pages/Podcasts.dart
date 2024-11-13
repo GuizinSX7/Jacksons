@@ -12,39 +12,39 @@ class _PodcastsState extends State<Podcasts> {
   final List<Map<String, String>> podcasts = [
     {
       'title': 'Podcast dos Jacksons',
-      'image': 'assets/podcast1.jfif', // Substitua pelo caminho da sua imagem
+      'image': 'assets/podcast1.jfif', 
       'duration': '2 hrs 15 mins',
-      'icon': 'assets/icon.png', // Adicione o caminho do ícone desejado
+      'icon': 'assets/icon.png', 
       'textBaixo': 'JackSONS!!!! ',
-      'color': '0xFF000000', // Cor hexadecimal em String
-      'colorBorder': '0xFF830DEF', // Cor hexadecimal da borda
+      'color': '0xFF000000', 
+      'colorBorder': '0xFF830DEF', 
     },
     {
       'title': 'Igão & mitico',
-      'image': 'assets/Podcast2.jpeg', // Substitua pelo caminho da sua imagem
+      'image': 'assets/Podcast2.jpeg',
       'duration': '1 hr 10 mins',
-      'icon': 'assets/PodcastIcon.jfif', // Adicione o caminho do ícone desejado
+      'icon': 'assets/PodcastIcon.jfif', 
       'textBaixo': 'igão brabo ai ',
-      'color': '0xFF06A3C12', // Cor hexadecimal em String
-      'colorBorder': '0xFFFFFFFF', // Cor hexadecimal da borda
+      'color': '0xFF06A3C12', 
+      'colorBorder': '0xFFFFFFFF', 
     },
     {
       'title': 'Jacksons a criação',
-      'image': 'assets/Podcast3.jfif', // Substitua pelo caminho da sua imagem
+      'image': 'assets/Podcast3.jfif', 
       'duration': '5 hrs 25 mins',
-      'icon': 'assets/icon.png', // Adicione o caminho do ícone desejado
+      'icon': 'assets/icon.png', 
       'textBaixo': 'brabo o create tlgd',
-      'color': '0xFF000000', // Cor hexadecimal em String
-      'colorBorder': '0xFF830DEF', // Cor hexadecimal da borda
+      'color': '0xFF000000', 
+      'colorBorder': '0xFF830DEF',
     },
     {
       'title': 'Flow PodeCaste',
-      'image': 'assets/Podcast4.jpg', // Substitua pelo caminho da sua imagem
+      'image': 'assets/Podcast4.jpg', 
       'duration': '3 hrs 12 mins',
-      'icon': 'assets/flowIcon.png', // Adicione o caminho do ícone desejado
+      'icon': 'assets/flowIcon.png', 
       'textBaixo': 'sdds do mano monarquia',
-      'color': '0xFF000000', // Cor hexadecimal em String
-      'colorBorder': '0xFF830DEF', // Cor hexadecimal da borda
+      'color': '0xFF000000', 
+      'colorBorder': '0xFF830DEF', 
     },
     // Adicione mais podcasts aqui, se desejar
   ];
