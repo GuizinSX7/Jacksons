@@ -45,9 +45,12 @@ class _AlbumState extends State<Album> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      child: Icon(Icons.arrow_back, color: Colors.white, size: 30),
-                      width: 30,
+                    GestureDetector(
+                      child: 
+                        Container(
+                          child: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+                          width: 30,
+                        ),
                     ),
                   ],
                 ),
