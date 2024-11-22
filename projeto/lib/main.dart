@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
         '/Pesquisa': (context) => Pesquisa(),
         '/Musico' : (context) => Musico(),
         '/Playlist' : (context) => Playlist(),
-        '/Album': (context) => Album()
+        '/Album': (context) => Album(),
+        '/Perfil': (context) => Perfil(),
 
       }, 
     );

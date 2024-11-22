@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/pages/Home.dart';
 
 class Pesquisa extends StatefulWidget {
   const Pesquisa({super.key});
@@ -8,11 +9,59 @@ class Pesquisa extends StatefulWidget {
 }
 
 class _PesquisaState extends State<Pesquisa> {
+  TextEditingController _controller = TextEditingController();
+  List<Map<String, String>> allItems = [
+    {
+      'title': 'Aerials',
+      'subtitle': 'Música - System Of Down',
+      'image': 'assets/aerials.png'
+    },
+    {
+      'title': 'Toxicity',
+      'subtitle': 'Música - System Of Down',
+      'image': 'assets/aerials.png'
+    },
+    {
+      'title': 'Podpah',
+      'subtitle': 'Podcast - Podpah',
+      'image': 'assets/podpah.png'
+    },
+    {
+      'title': 'Psychosocial',
+      'subtitle': 'Música - SlipKnot',
+      'image': 'assets/psychosocial.png'
+    },
+    {
+      'title': 'Master of Puppets',
+      'subtitle': 'Música - Metallica',
+      'image': 'assets/master_of_puppets.png'
+    },
+  ];
+
+  List<Map<String, String>> filteredItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializa com todos os itens
+    filteredItems = allItems;
+    _controller.addListener(() {
+      filterItems();
+    });
+  }
+
+  // Função para filtrar os itens conforme o texto no campo de pesquisa
+  void filterItems() {
+    String query = _controller.text.toLowerCase();
+    setState(() {
+      filteredItems = allItems.where((item) {
+        return item['title']!.toLowerCase().contains(query);
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -21,27 +70,39 @@ class _PesquisaState extends State<Pesquisa> {
           children: [
             const SizedBox(height: 30),
             TextFormField(
+              controller: _controller,
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: 'O que você quer ouvir?',
                 hintStyle:
                     const TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
-                prefixIcon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.black, // Define a cor do ícone como preto
+                prefixIcon: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                    );
+                  },
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(3),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 filled: true,
                 fillColor: const Color.fromARGB(255, 88, 88, 88),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
+            // Condicional para exibir "Pesquisando" com o texto digitado
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Buscas Recentes',
+                _controller.text.isEmpty
+                    ? 'Buscas Recentes'
+                    : 'Pesquisando: ${_controller.text}', // Exibe o texto do input
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -49,211 +110,58 @@ class _PesquisaState extends State<Pesquisa> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.bottomLeft,                  
-              child: Row(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage('assets/aerials.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Aerials',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Música - System Of Down',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
             const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Row(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage('assets/aerials.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Expanded(
+              child: ListView.builder(
+                itemCount: filteredItems.length,
+                itemBuilder: (context, index) {
+                  var item = filteredItems[index];
+                  return Column(
                     children: [
-                      Text(
-                        'Toxicity',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: AssetImage(item['image']!),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item['title']!,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  item['subtitle']!,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Música - System Of Down',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      const SizedBox(height: 10),
                     ],
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Row(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage('assets/podpah.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Podpah',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Podcast - Podpah',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Row(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage('assets/psychosocial.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Psychosocial',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Música - SlipKnot',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Row(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage('assets/master_of_puppets.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Master of Puppets',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Música - Metállica',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                  );
+                },
               ),
             ),
           ],

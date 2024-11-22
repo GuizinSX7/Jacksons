@@ -15,6 +15,9 @@ class Appbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(context, '/Perfil', (route) => false);
+            },
             child: Icon(Icons.person_outline, color: MyColors.roxo),
           ),
           SizedBox(width: 9), // Espaçamento entre ícone e o primeiro botão

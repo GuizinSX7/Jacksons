@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/pages/Home.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -39,6 +40,10 @@ class _PerfilState extends State<Perfil> {
                     size: 40.0,  // Tamanho do ícone
                   ),
                   onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()), 
+                    );
                   },
                 ),
               ),
