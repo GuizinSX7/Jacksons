@@ -10,28 +10,52 @@ class Musicaselecionada extends StatefulWidget {
 }
 
 final List<Map<String, dynamic>> musicas = [
- {'image': 'assets/Ghostss.jfif', 'banda': 'Ghost', 'nome': 'Mary on A cross', 'musica': 'Ghost.mp3'},
- {'image': 'assets/SOAD.jfif', 'banda': 'System Of Down', 'nome': 'Aerials', 'musica': 'AERIALS.mp3'},
- {'image': 'assets/slipknot_image.jpg', 'banda': 'slipknot', 'nome': 'Devil in I', 'musica': 'Devil_in_I.mp3'},
- {'image': 'assets/slipknot_image.jpg', 'banda': 'slipknot', 'nome': 'Duality', 'musica': 'Duality.mp3'},
- {'image': 'assets/engenharia_havaiana.jfif', 'banda': 'Engenheiros do Hawaii', 'nome': 'Era um garoto que como eu Amava os Beatles e os Rolling Stones ', 'musica': 'Engenheiros_Hawaii.mp3'},
-  ];
+  {
+    'image': 'assets/Ghostss.jfif',
+    'banda': 'Ghost',
+    'nome': 'Mary on A Cross',
+    'musica': 'Ghost.mp3',
+  },
+  {
+    'image': 'assets/SOAD.jfif',
+    'banda': 'System Of Down',
+    'nome': 'Aerials',
+    'musica': 'AERIALS.mp3',
+  },
+  {
+    'image': 'assets/slipknot_image.jpg',
+    'banda': 'Slipknot',
+    'nome': 'Devil in I',
+    'musica': 'Devil_in_I.mp3',
+  },
+  {
+    'image': 'assets/slipknot_image.jpg',
+    'banda': 'Slipknot',
+    'nome': 'Duality',
+    'musica': 'Duality.mp3',
+  },
+  {
+    'image': 'assets/engenharia_havaiana.jfif',
+    'banda': 'Engenheiros do Hawaii',
+    'nome': 'Era um garoto que como eu Amava os Beatles e os Rolling Stones',
+    'musica': 'Engenheiros_Hawaii.mp3',
+  },
+];
 
 class _MyWidgetState extends State<Musicaselecionada> {
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
+  int _currentMusicIndex = 0; // Índice da música atual
   double _sliderValue = 0.0;
   Duration _duration = Duration.zero;
   Duration _currentPosition = Duration.zero;
 
   @override
-  
-
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
 
-    // Set up event listeners for duration and position changes
+    // Listeners para duração e posição da música
     _audioPlayer.onDurationChanged.listen((d) {
       setState(() {
         _duration = d;
@@ -45,25 +69,44 @@ class _MyWidgetState extends State<Musicaselecionada> {
       });
     });
 
-    // Play the song from assets (using AssetSource)
-    _audioPlayer.play(AssetSource('AERIALS.mp3'));
+    // Toca a primeira música ao iniciar
+    _playMusic();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _audioPlayer.dispose(); // Clean up resources
+    _audioPlayer.dispose();
   }
 
-  void _togglePlayPause() {
-    if (_isPlaying) {
-      _audioPlayer.pause();
-    } else {
-      _audioPlayer.play(AssetSource('AERIALS.mp3'));
-    }
+  void _playMusic() async {
+    String musicFile = musicas[_currentMusicIndex]['musica'];
+    await _audioPlayer.play(AssetSource(musicFile));
     setState(() {
-      _isPlaying = !_isPlaying;
+      _isPlaying = true;
     });
+  }
+
+  void _pauseMusic() {
+    _audioPlayer.pause();
+    setState(() {
+      _isPlaying = false;
+    });
+  }
+
+  void _nextMusic() {
+    setState(() {
+      _currentMusicIndex =
+          (_currentMusicIndex + 1) % musicas.length; // Avança e reinicia no final
+    });
+    _playMusic();
+  }
+
+  void _previousMusic() {
+    setState(() {
+      _currentMusicIndex = (_currentMusicIndex - 1 + musicas.length) % musicas.length;
+    });
+    _playMusic();
   }
 
   void _seekTo(double value) {
@@ -72,8 +115,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    Map<String, dynamic> currentMusic = musicas[_currentMusicIndex];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -83,75 +125,16 @@ class _MyWidgetState extends State<Musicaselecionada> {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                Color(0xFF000000), // #000 59.6%
-                Color(0xFF74502A),
+                const Color(0xFF000000),
+                const Color(0xFF74502A),
               ],
-              stops: [0.6, 1.0],
+              stops: const [0.6, 1.0],
             ),
           ),
           child: Column(
             children: [
               const SizedBox(height: 80),
-              // Header Row with Icons and Playlist Name
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      child: Icon(
-                        Icons.arrow_drop_down,
-                        size: 60,
-                        color: Colors.white,
-                      ),
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, "/Home");
-                      },
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "TOCANDO DA PLAYLIST",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white.withOpacity(0.8),
-                          ),
-                        ),
-                        Text(
-                          "Nome da playlists",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white.withOpacity(0.6),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.more_vert,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-
-              // Album Artwork with Border Radius
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: ClipRRect(
-                  child: Image.asset(
-                    'assets/aerials.png',
-                    width: 300,
-                    height: 300,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 50),
-
-              // Song Info and Controls
+              // Informações da música atual
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
@@ -159,21 +142,21 @@ class _MyWidgetState extends State<Musicaselecionada> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset('assets/aerials.png', width: 80),
+                      child: Image.asset(currentMusic['image'], width: 80),
                     ),
                     const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'System of a Down - ',
-                          style: TextStyle(
+                          currentMusic['banda'],
+                          style: const TextStyle(
                             fontSize: 16,
                             color: Colors.white,
                           ),
                         ),
                         Text(
-                          'Aerials',
+                          currentMusic['nome'],
                           style: TextStyle(
                             color: MyColors.roxo,
                             fontSize: 14,
@@ -182,18 +165,13 @@ class _MyWidgetState extends State<Musicaselecionada> {
                         ),
                       ],
                     ),
-                    const SizedBox(width: 12),
-                    Image.asset(
-                      'assets/download button pressed.png',
-                      width: 35,
-                    ),
                   ],
                 ),
               ),
 
               const SizedBox(height: 10),
 
-              // Music Progress Slider (Wider)
+              // Slider de progresso da música
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -203,7 +181,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
                       children: [
                         Text(
                           _currentPosition.toString().split('.').first,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         Expanded(
                           child: Slider(
@@ -222,7 +200,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
                         ),
                         Text(
                           _duration.toString().split('.').first,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
@@ -232,61 +210,28 @@ class _MyWidgetState extends State<Musicaselecionada> {
 
               const SizedBox(height: 20),
 
-              // Controls Row (Centered)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.speaker,
-                      size: 40,
-                      color: Colors.white.withOpacity(0.7),
+              // Controles de reprodução
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.fast_rewind, size: 40, color: Colors.white),
+                    onPressed: _previousMusic,
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      _isPlaying ? Icons.pause_circle : Icons.play_circle,
+                      size: 60,
+                      color: Colors.white,
                     ),
-                    const SizedBox(width: 50),
-                    Icon(
-                      Icons.fast_rewind,
-                      size: 40,
-                      color: Colors.white.withOpacity(0.7),
-                    ),
-                    const Spacer(), // This spacer pushes the play button to the center
-                    IconButton(
-                      icon: Icon(
-                        _isPlaying
-                            ? Icons.pause_circle_filled
-                            : Icons.play_circle_filled,
-                        size: 60,
-                        color: Colors.white,
-                      ),
-                      onPressed: _togglePlayPause,
-                    ),
-                    const Spacer(), // This spacer pushes the play button to the center
-                    Icon(
-                      Icons.fast_forward,
-                      size: 40,
-                      color: Colors.white.withOpacity(0.7),
-                    ),
-                    const SizedBox(width: 24),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.repeat_rounded,
-                          size: 30,
-                          color: Colors.white.withOpacity(0.7),
-                        ),
-                        const SizedBox(width: 8),
-                        Icon(
-                          Icons.share,
-                          size: 30,
-                          color: Colors.white.withOpacity(0.7),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                    onPressed: _isPlaying ? _pauseMusic : _playMusic,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.fast_forward, size: 40, color: Colors.white),
+                    onPressed: _nextMusic,
+                  ),
+                ],
               ),
-
-              const SizedBox(height: 40),
             ],
           ),
         ),
