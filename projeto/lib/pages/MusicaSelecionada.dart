@@ -9,6 +9,14 @@ class Musicaselecionada extends StatefulWidget {
   State<Musicaselecionada> createState() => _MyWidgetState();
 }
 
+final List<Map<String, dynamic>> musicas = [
+ {'image': 'assets/Ghostss.jfif', 'banda': 'Ghost', 'nome': 'Mary on A cross', 'musica': 'Ghost.mp3'},
+ {'image': 'assets/SOAD.jfif', 'banda': 'System Of Down', 'nome': 'Aerials', 'musica': 'AERIALS.mp3'},
+ {'image': 'assets/slipknot_image.jpg', 'banda': 'slipknot', 'nome': 'Devil in I', 'musica': 'Devil_in_I.mp3'},
+ {'image': 'assets/slipknot_image.jpg', 'banda': 'slipknot', 'nome': 'Duality', 'musica': 'Duality.mp3'},
+ {'image': 'assets/engenharia_havaiana.jfif', 'banda': 'Engenheiros do Hawaii', 'nome': 'Era um garoto que como eu Amava os Beatles e os Rolling Stones ', 'musica': 'Engenheiros_Hawaii.mp3'},
+  ];
+
 class _MyWidgetState extends State<Musicaselecionada> {
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
@@ -17,6 +25,8 @@ class _MyWidgetState extends State<Musicaselecionada> {
   Duration _currentPosition = Duration.zero;
 
   @override
+  
+
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
