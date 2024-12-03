@@ -12,30 +12,55 @@ class _PesquisaState extends State<Pesquisa> {
   TextEditingController _controller = TextEditingController();
   List<Map<String, String>> allItems = [
     {
-      'title': 'Aerials',
-      'subtitle': 'Música - System Of Down',
-      'image': 'assets/aerials.png'
+      "title": "Aerials",
+      "genre": "Música",
+      "band": "System Of Down",
+      "image": "assets/aerials.png"
     },
     {
-      'title': 'Toxicity',
-      'subtitle': 'Música - System Of Down',
-      'image': 'assets/aerials.png'
+      "title": "Toxicity",
+      "genre": "Música",
+      "band": "System Of Down",
+      "image": "assets/aerials.png",
+      'route': '/MusicaSelecionada'
     },
     {
-      'title': 'Podpah',
-      'subtitle': 'Podcast - Podpah',
-      'image': 'assets/podpah.png'
+      "title": "Podpah",
+      "genre": "Podcast",
+      "band": "Podpah",
+      "image": "assets/podpah.png",
+      'route': '/MusicaSelecionada'
     },
     {
-      'title': 'Psychosocial',
-      'subtitle': 'Música - SlipKnot',
-      'image': 'assets/psychosocial.png'
+      "title": "Psychosocial",
+      "genre": "Música",
+      "band": "SlipKnot",
+      "image": "assets/psychosocial.png",
+      'route': '/MusicaSelecionada'
     },
     {
-      'title': 'Master of Puppets',
-      'subtitle': 'Música - Metallica',
-      'image': 'assets/master_of_puppets.png'
+      "title": "Master of Puppets",
+      "genre": "Música",
+      "band": "Metallica",
+      "image": "assets/master_of_puppets.png",
+      'route': '/MusicaSelecionada'
     },
+    {
+      "title": "Duality",
+      "genre": "Música",
+      "band": "Slipknot",
+      "image": "assets/duality.png",
+      'route': '/MusicaSelecionada'
+    }, 
+    {
+      "title": "Devil's Gun",
+      "genre": "Música",
+      "band": "C.J. & Co",
+      "image": "assets/Devils_Guns.png",
+      'route': '/MusicaSelecionada'
+    },
+
+
   ];
 
   List<Map<String, String>> filteredItems = [];
@@ -55,7 +80,9 @@ class _PesquisaState extends State<Pesquisa> {
     String query = _controller.text.toLowerCase();
     setState(() {
       filteredItems = allItems.where((item) {
-        return item['title']!.toLowerCase().contains(query);
+        return item['title']!.toLowerCase().contains(query) ||
+               item['genre']!.toLowerCase().contains(query) ||
+               item['band']!.toLowerCase().contains(query);
       }).toList();
     });
   }
@@ -146,8 +173,9 @@ class _PesquisaState extends State<Pesquisa> {
                                   ),
                                 ),
                                 const SizedBox(height: 5),
+                                // Exibe o gênero e a banda
                                 Text(
-                                  item['subtitle']!,
+                                  '${item['genre']} - ${item['band']}',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey,
