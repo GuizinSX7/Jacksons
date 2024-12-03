@@ -129,7 +129,7 @@ class _PesquisaState extends State<Pesquisa> {
               child: Text(
                 _controller.text.isEmpty
                     ? 'Buscas Recentes'
-                    : 'Pesquisando: ${_controller.text}', // Exibe o texto do input
+                    : 'Pesquisando: ${_controller.text}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
