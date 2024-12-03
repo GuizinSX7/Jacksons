@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
+import 'package:projeto/pages/Buscar.dart';
 import 'package:projeto/pages/ContiCadastro.dart';
 import 'package:projeto/pages/ContaComp.dart';
 import 'package:projeto/pages/Musico.dart';
@@ -7,6 +8,8 @@ import 'package:projeto/pages/Perfil.dart';
 import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/splashscreen.dart';
 import 'package:projeto/pages/Resultadopesquisa.dart';
+import 'package:projeto/pages/Buscar.dart';
+
 
 import 'package:projeto/pages/Playlist.dart';
 import 'pages/Podcasts.dart';
@@ -49,6 +52,7 @@ class MyApp extends StatelessWidget {
         '/Playlist' : (context) => Playlist(),
         '/Album': (context) => Album(),
         '/Perfil': (context) => Perfil(),
+        '/Buscar': (context) => Buscar(),
 
       }, 
     );
