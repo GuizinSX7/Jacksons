@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projeto/Shared/style.dart';
 
 class CustomTextFieldPassword extends StatefulWidget {
-  final TextEditingController usernameController;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  final TextEditingController confirmPasswordController;
-
-  const CustomTextFieldPassword({
+  final VoidCallback onContinueCadastro;
+    
+  CustomTextFieldPassword({
     Key? key,
-    required this.usernameController,
-    required this.emailController,
-    required this.passwordController,
-    required this.confirmPasswordController,
+    required this.onContinueCadastro,
   }) : super(key: key);
 
   @override
@@ -20,10 +15,43 @@ class CustomTextFieldPassword extends StatefulWidget {
 }
 
 class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _controleruserCadastro = TextEditingController();
+  final TextEditingController _controleremailCadastro = TextEditingController();
+  final TextEditingController _controlerpasswordCadastro = TextEditingController();
+  final TextEditingController _controlerconfirmpasswordCadastro = TextEditingController();
   String password = "";
   bool _obscureTextPass = true;
   bool _obscureTextConfirmPass = true;
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _register() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+          email: _controleremailCadastro.text.trim(),
+          password: _controlerpasswordCadastro.text.trim(),
+        );
+
+        await userCredential.user!.updateDisplayName(_controleruserCadastro.text.trim());
+        await userCredential.user!.reload();
+        _auth.currentUser; 
+        _showSnackBar('Cadastro realizado com sucesso!', Colors.green);
+        Navigator.pop(context);
+      } catch (e) {
+        _showSnackBar('Erro no cadastro: ${e.toString()}', Colors.red);
+      }
+    }
+  }
+
+  void _showSnackBar(String message, Color color) {
+    final snackBar = SnackBar(
+      content: Text(message),
+      backgroundColor: color,
+      duration: Duration(seconds: 2),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -47,7 +75,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
           children: [
             const SizedBox(height: 45,),
             TextFormField(
-              controller: widget.usernameController,
+              controller: _controleruserCadastro,
               decoration: InputDecoration(
                 hintText: "Nome de usuário",
                 border: OutlineInputBorder(
@@ -80,7 +108,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
             ),
             const SizedBox(height: 45,), // Espaço entre os campos
             TextFormField(
-              controller: widget.passwordController, 
+              controller: _controlerpasswordCadastro, 
               obscureText: _obscureTextPass,
               decoration: InputDecoration(
                 hintText: "Senha", 
@@ -129,7 +157,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
             ),
             const SizedBox(height: 45,),
             TextFormField(
-              controller: widget.confirmPasswordController, 
+              controller: _controlerconfirmpasswordCadastro, 
               obscureText: _obscureTextConfirmPass,
               decoration: InputDecoration(
                 hintText: "Confirmar senha", 
@@ -158,7 +186,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
                 if (confirmpassword == null || confirmpassword.isEmpty) {
                   return "A confirmação de senha não pode estar vazia";
                 }
-                if (confirmpassword != widget.passwordController.text) {
+                if (confirmpassword != _controlerpasswordCadastro.text) {
                   return "As senhas não Coincidem";
                 }
                 return null;
@@ -166,7 +194,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
             ),
             const SizedBox(height: 45,),
             TextFormField(
-              controller: widget.emailController, 
+              controller: _controleremailCadastro, 
               decoration: InputDecoration(
                 hintText: "Email", 
                 border: OutlineInputBorder(
@@ -228,7 +256,8 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
   void buttonEnterClick() {
     if (_formKey.currentState!.validate()) {
       print('form ok');
-      Navigator.pushReplacementNamed(context, '/Cadastro');
+      _register();
+      widget.onContinueCadastro();
     } else {
       print('form erro');
     }

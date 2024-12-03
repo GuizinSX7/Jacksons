@@ -3,9 +3,11 @@ import 'package:projeto/Shared/style.dart';
 import 'package:projeto/pages/Buscar.dart';
 import 'package:projeto/pages/ContiCadastro.dart';
 import 'package:projeto/pages/ContaComp.dart';
+import 'package:firebase_core/firebase_core.dart'; 
 import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/Perfil.dart';
 import 'package:projeto/pages/passwordreset.dart';
+import 'package:projeto/pages/principal.dart';
 import 'package:projeto/pages/splashscreen.dart';
 import 'package:projeto/pages/Resultadopesquisa.dart';
 import 'package:projeto/pages/Buscar.dart';
@@ -19,7 +21,9 @@ import 'pages/MusicaSelecionada.dart';
 import 'pages/Pesquisa.dart';
 import 'pages/Album.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Garante que a ligação dos widgets do Flutter esteja inicializada antes de usar qualquer plugin
+  await Firebase.initializeApp(); 
   runApp(const MyApp());
 }
 
@@ -40,9 +44,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' : (context) => SplashScreen(), 
-        '/Login' : (context) => LoginPage(),
+        '/principal' : (context) => PrincipalPage(),
         '/passwordreset' : (context) => resetpassword(),
-        '/Cadastro' : (context) => ContiCadastro(),
         '/Home': (context) => Home(), 
         '/Musics': (context) => Musics(), 
         '/Podcasts': (context) => Podcasts(), 
