@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
 import 'package:projeto/pages/Buscar.dart';
 import 'package:projeto/pages/ContiCadastro.dart';
-import 'package:projeto/pages/ContaComp.dart';
 import 'package:firebase_core/firebase_core.dart'; 
 import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/Perfil.dart';
