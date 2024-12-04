@@ -15,7 +15,8 @@ class _PesquisaState extends State<Pesquisa> {
       "title": "Aerials",
       "genre": "Música",
       "band": "System Of Down",
-      "image": "assets/aerials.png"
+      "image": "assets/aerials.png",
+      'route': '/MusicaSelecionada'
     },
     {
       "title": "Toxicity",
@@ -59,8 +60,6 @@ class _PesquisaState extends State<Pesquisa> {
       "image": "assets/Devils_Guns.png",
       'route': '/MusicaSelecionada'
     },
-
-
   ];
 
   List<Map<String, String>> filteredItems = [];
@@ -68,14 +67,14 @@ class _PesquisaState extends State<Pesquisa> {
   @override
   void initState() {
     super.initState();
-    // Inicializa com todos os itens
+    // Vai inicializar todos os itens
     filteredItems = allItems;
     _controller.addListener(() {
       filterItems();
     });
   }
 
-  // Função para filtrar os itens conforme o texto no campo de pesquisa
+  // Filtra os negócios que tu pesquisar
   void filterItems() {
     String query = _controller.text.toLowerCase();
     setState(() {
@@ -101,13 +100,9 @@ class _PesquisaState extends State<Pesquisa> {
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: 'O que você quer ouvir?',
-                hintStyle:
-                    const TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
+                hintStyle: const TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
                 prefixIcon: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
-                  ),
+                  icon: Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
@@ -123,13 +118,13 @@ class _PesquisaState extends State<Pesquisa> {
               ),
             ),
             const SizedBox(height: 20),
-            // Condicional para exibir "Pesquisando" com o texto digitado
+            // Quando vc digitar vai aparecer escrito "Pesquisando"
             Align(
               alignment: Alignment.topLeft,
               child: Text(
                 _controller.text.isEmpty
                     ? 'Buscas Recentes'
-                    : 'Pesquisando: ${_controller.text}', // Exibe o texto do input
+                    : 'Pesquisando: ${_controller.text}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -147,43 +142,51 @@ class _PesquisaState extends State<Pesquisa> {
                     children: [
                       Align(
                         alignment: Alignment.bottomLeft,
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: AssetImage(item['image']!),
-                                  fit: BoxFit.cover,
+                        child: GestureDetector(
+                          onTap: () {
+                            // Verifica se existe uma rota e navega para ela
+                            if (item['route'] != null) {
+                              Navigator.pushNamed(context, item['route']!);
+                            }
+                          },
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: AssetImage(item['image']!),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  item['title']!,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                              const SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item['title']!,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 5),
-                                // Exibe o gênero e a banda
-                                Text(
-                                  '${item['genre']} - ${item['band']}',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
+                                  const SizedBox(height: 5),
+                                  // Exibe o gênero e a banda
+                                  Text(
+                                    '${item['genre']} - ${item['band']}',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
