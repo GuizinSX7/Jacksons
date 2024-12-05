@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
 import 'package:projeto/components/appbar.dart';
+import 'package:projeto/components/music.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -165,11 +166,13 @@ class _HomeState extends State<Home> {
                         fontSize: 10,
                       ),
                     ),
+                    AnimationWidget()
                   ],
                 ),
               ),
             );
           }).toList(),
+          
         ),
       ),
     );
