@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/pages/Home.dart';
+import 'package:projeto/components/musicplayer.dart';
+
 
 class Pesquisa extends StatefulWidget {
   const Pesquisa({super.key});
@@ -64,108 +66,117 @@ class _PesquisaState extends State<Pesquisa> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-            TextFormField(
-              controller: _controller,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'O que você quer ouvir?',
-                hintStyle:
-                    const TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
-                prefixIcon: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 30),
+                TextFormField(
+                  controller: _controller,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'O que você quer ouvir?',
+                    hintStyle:
+                        const TextStyle(color: Color.fromARGB(255, 31, 31, 31)),
+                    prefixIcon: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                      },
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 88, 88, 88),
                   ),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => Home()),
-                    );
-                  },
                 ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
+                const SizedBox(height: 20),
+                // Condicional para exibir "Pesquisando" com o texto digitado
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    _controller.text.isEmpty
+                        ? 'Buscas Recentes'
+                        : 'Pesquisando: ${_controller.text}', // Exibe o texto do input
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                filled: true,
-                fillColor: const Color.fromARGB(255, 88, 88, 88),
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Condicional para exibir "Pesquisando" com o texto digitado
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                _controller.text.isEmpty
-                    ? 'Buscas Recentes'
-                    : 'Pesquisando: ${_controller.text}', // Exibe o texto do input
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: filteredItems.length,
-                itemBuilder: (context, index) {
-                  var item = filteredItems[index];
-                  return Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: AssetImage(item['image']!),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: filteredItems.length,
+                    itemBuilder: (context, index) {
+                      var item = filteredItems[index];
+                      return Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Row(
                               children: [
-                                Text(
-                                  item['title']!,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: AssetImage(item['image']!),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  item['subtitle']!,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      item['title']!,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      item['subtitle']!,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                    ],
-                  );
-                },
-              ),
+                          ),
+                          const SizedBox(height: 10),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            left: 0,
+            bottom: 0,
+            right: 0,
+            child: MusicWidget(), )
+        ],
       ),
     );
   }

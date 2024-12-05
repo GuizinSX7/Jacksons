@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/Shared/style.dart';
 import 'package:projeto/components/appbar.dart';
+import 'package:projeto/components/musicplayer.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -44,83 +46,92 @@ class _HomeState extends State<Home> {
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Column(
-          children: [
-            Text(
-              'Músicas mais tocadas em 2024',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: "ABeeZee",
-              ),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(height: 13),
-            _buildMusicCarousel(),
-            SizedBox(height: 13),
-             Container(
-                child: Text(
-                  'Tocadas recentemente',
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Column(
+              children: [
+                Text(
+                  'Músicas mais tocadas em 2024',
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: "ABeeZee",
                   ),
                   textAlign: TextAlign.left,
                 ),
-                alignment: Alignment(-0.65 , 0),
-             ),
-            SizedBox(height: 13),
-            _buildMusicCarousel(),
-            SizedBox(height: 13),
-            Container(
-                 child: Text(
-                  'Artistas',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: "ABeeZee",
-                  ),
-                  textAlign: TextAlign.start,
-                             ),
-                alignment: Alignment(-0.85 , 0),
-               ),
-              SizedBox(height: 13),
-
-
-            Container(
-     margin: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: artistas.map((item) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        item['image'],
-                        fit: BoxFit.cover,
-                        width: 86,
-                        height: 97,
+                SizedBox(height: 13),
+                _buildMusicCarousel(),
+                SizedBox(height: 13),
+                 Container(
+                    child: Text(
+                      'Tocadas recentemente',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: "ABeeZee",
                       ),
+                      textAlign: TextAlign.left,
                     ),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ),
-  ),// Você pode usar a mesma lista ou criar outra
-          ],
-        ),
+                    alignment: Alignment(-0.65 , 0),
+                 ),
+                SizedBox(height: 13),
+                _buildMusicCarousel(),
+                SizedBox(height: 13),
+                Container(
+                     child: Text(
+                      'Artistas',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: "ABeeZee",
+                      ),
+                      textAlign: TextAlign.start,
+                                 ),
+                    alignment: Alignment(-0.85 , 0),
+                   ),
+                  SizedBox(height: 13),
+          
+          
+                Container(
+               margin: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: artistas.map((item) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            item['image'],
+                            fit: BoxFit.cover,
+                            width: 86,
+                            height: 97,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+            ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 0,
+            bottom: 0,
+            right: 0,
+            child: MusicWidget(), )
+        ],
       ),
     );
   }

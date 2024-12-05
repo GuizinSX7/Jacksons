@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/components/appbar.dart';
+import 'package:projeto/components/musicplayer.dart';
+
 
 class Podcasts extends StatefulWidget {
   const Podcasts({super.key});
@@ -57,20 +59,30 @@ class _PodcastsState extends State<Podcasts> {
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(8.0),
-        itemCount: podcasts.length,
-        itemBuilder: (context, index) {
-          return PodcastCard(
-            title: podcasts[index]['title']!,
-            image: podcasts[index]['image']!,
-            duration: podcasts[index]['duration']!,
-            icon: podcasts[index]['icon']!,
-            textBaixo: podcasts[index]['textBaixo']!,
-            color: Color(int.parse(podcasts[index]['color']!)),
-            colorBorder: Color(int.parse(podcasts[index]['colorBorder']!)),
-          );
-        },
+      body: Stack(
+        children: [
+          ListView.builder(
+            padding: EdgeInsets.all(8.0),
+            itemCount: podcasts.length,
+            itemBuilder: (context, index) {
+              return PodcastCard(
+                title: podcasts[index]['title']!,
+                image: podcasts[index]['image']!,
+                duration: podcasts[index]['duration']!,
+                icon: podcasts[index]['icon']!,
+                textBaixo: podcasts[index]['textBaixo']!,
+                color: Color(int.parse(podcasts[index]['color']!)),
+                colorBorder: Color(int.parse(podcasts[index]['colorBorder']!)),
+              );
+            },
+          ),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              right: 0,
+              child: MusicWidget(), )
+
+        ],
       ),
     );
   }
@@ -99,92 +111,97 @@ class PodcastCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(
-              color: colorBorder, width: 2), // Borda com cor personalizada
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Título, ícone e duração no topo em linhas separadas
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(13), bottom: Radius.circular(13)),
-                        child: Image.asset(
-                          icon,
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        title,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    duration,
-                    style: TextStyle(color: Colors.grey[400]),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 3),
-            ClipRRect(
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: 150,
-              ),
-            ),
-            SizedBox(height: 3),
-            // Texto abaixo da imagem com cor de fundo personalizada
-            Container(
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
               color: color,
-              width: double.infinity,
-              padding: EdgeInsets.all(7.0),
-              child: Text(
-                ' ${textBaixo} \n ${duration}',
-                style: TextStyle(color: Colors.grey, fontSize: 9),
-                
-              ),
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                  color: colorBorder, width: 2), // Borda com cor personalizada
             ),
-            SizedBox(height: 14),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.replay, color: Colors.white),
-                  Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Título, ícone e duração no topo em linhas separadas
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.more_vert, color: Colors.white),
-                      SizedBox(width: 8), // Espaço entre os ícones
-                      Icon(Icons.play_arrow, color: Colors.white,),
+                      Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius:
+                                BorderRadius.vertical(top: Radius.circular(13), bottom: Radius.circular(13)),
+                            child: Image.asset(
+                              icon,
+                              width: 50,
+                              height: 50,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            title,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        duration,
+                        style: TextStyle(color: Colors.grey[400]),
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 3),
+                ClipRRect(
+                  child: Image.asset(
+                    image,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 150,
+                  ),
+                ),
+                SizedBox(height: 3),
+                // Texto abaixo da imagem com cor de fundo personalizada
+                Container(
+                  color: color,
+                  width: double.infinity,
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    ' ${textBaixo} \n ${duration}',
+                    style: TextStyle(color: Colors.grey, fontSize: 9),
+                    
+                  ),
+                ),
+                SizedBox(height: 14),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.replay, color: Colors.white),
+                      Row(
+                        children: [
+                          Icon(Icons.more_vert, color: Colors.white),
+                          SizedBox(width: 8), // Espaço entre os ícones
+                          Icon(Icons.play_arrow, color: Colors.white,),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+            
+          ),
+        ],
       ),
     );
   }
