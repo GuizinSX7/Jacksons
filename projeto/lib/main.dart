@@ -4,12 +4,9 @@ import 'package:projeto/pages/ContiCadastro.dart';
 import 'package:firebase_core/firebase_core.dart'; 
 import 'package:projeto/pages/Musico.dart';
 import 'package:projeto/pages/Perfil.dart';
-import 'package:projeto/pages/passwordreset.dart';
 import 'package:projeto/pages/principal.dart';
 import 'package:projeto/pages/splashscreen.dart';
 import 'package:projeto/pages/Resultadopesquisa.dart';
-
-
 import 'package:projeto/pages/Playlist.dart';
 import 'pages/Podcasts.dart';
 import 'pages/Musics.dart';
@@ -42,7 +39,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/' : (context) => SplashScreen(), 
         '/principal' : (context) => PrincipalPage(),
-        '/passwordreset' : (context) => resetpassword(),
         '/Home': (context) => Home(), 
         '/Musics': (context) => Musics(), 
         '/Podcasts': (context) => Podcasts(), 
