@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/pages/Home.dart';
-import 'package:projeto/components/musicplayer.dart';
+import 'package:projeto/components/teste.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -15,6 +15,7 @@ class _PerfilState extends State<Perfil> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
+        // Use Stack to overlay widgets
         children: [
           Container(
             decoration: BoxDecoration(
@@ -52,6 +53,10 @@ class _PerfilState extends State<Perfil> {
                       ),
                     ),
                   ),
+                  // Your user profile and other content goes here...
+                  // (e.g., user profile image, favorites, etc.)
+
+                  // Example of user profile section
                   Align(
                     alignment: Alignment.center,
                     child: Row(
@@ -93,6 +98,7 @@ class _PerfilState extends State<Perfil> {
                     ),
                   ),
                   const SizedBox(height: 15),
+                  // Botão "Editar" com ícone de pontinhos ao lado
                   Row(
                     children: [
                       Padding(
@@ -127,6 +133,7 @@ class _PerfilState extends State<Perfil> {
 
                   const SizedBox(height: 15),
 
+                  // Meus Favoritos
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
@@ -142,6 +149,7 @@ class _PerfilState extends State<Perfil> {
                   ),
                   const SizedBox(height: 10),
 
+                  // Itens favoritos
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Row(
@@ -266,6 +274,7 @@ class _PerfilState extends State<Perfil> {
                   ),
                   const SizedBox(height: 10),
 
+                  // Botão para ver todos os favoritos
                   Align(
                     alignment: Alignment.center,
                     child: ElevatedButton(
@@ -293,7 +302,7 @@ class _PerfilState extends State<Perfil> {
             left: 0,
             bottom: 0,
             right: 0,
-            child: MusicWidget(),
+            child: MyWidget(), // Your fixed music player
           ),
         ],
       ),

@@ -216,7 +216,7 @@ class _ContiCadastroCompState extends State<ContiCadastroComp> {
                 ),
                 child: const Center(
                   child: Text(
-                    'Logar',
+                    'Cadastrar',
                     style: TextStyle(
                       fontSize: 24,
                       color: MyColors.branco,
@@ -278,7 +278,7 @@ class _ContiCadastroCompState extends State<ContiCadastroComp> {
       // Aqui você pode chamar a função que envia os dados para o banco
       // Exemplo fictício de uma função para enviar dados:
       print('Dia: $dia, Mês: $mes, Ano: $ano, Gênero: $genero');
-      // Navigator.pushReplacementNamed(context, '/Home');
+      Navigator.pushReplacementNamed(context, '/principal');
     } else {
       print('form erro');
     }

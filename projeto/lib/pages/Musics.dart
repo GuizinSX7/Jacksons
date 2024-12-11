@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/components/appbar.dart';
 import 'package:projeto/Shared/style.dart';
-import 'package:projeto/components/musicplayer.dart';
-
 
 class Musics extends StatefulWidget {
   const Musics({super.key});
@@ -43,124 +41,115 @@ class _MusicsState extends State<Musics> {
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Appbar(),
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Título das músicas favoritas
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text(
-                    'Suas músicas favoritas',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "ABeeZee",
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Título das músicas favoritas
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                'Suas músicas favoritas',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: "ABeeZee",
+                ),
+              ),
+            ),
+            SizedBox(height: 13),
+            _buildMusicCarousel(),
+            SizedBox(height: 13),
+
+            // "Para fãs De" com a imagem circular
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                children: [
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/SOAD.jfif',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                SizedBox(height: 13),
-                _buildMusicCarousel(),
-                SizedBox(height: 13),
-          
-                // "Para fãs De" com a imagem circular
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Row(
+                  SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipOval(
-                        child: Image.asset(
-                          'assets/SOAD.jfif',
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.cover,
+                      Text(
+                        'Para fãs De',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "ABeeZee",
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Para fãs De',
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "ABeeZee",
-                            ),
-                          ),
-                          Text(
-                            'System of Down',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: "ABeeZee",
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'System of Down',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: "ABeeZee",
+                        ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(height: 13),
-          
-                _buildMusicCarousel(),
-                SizedBox(height: 13),
-          
-                // Título de "Artistas"
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text(
-                    'Artistas',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "ABeeZee",
-                    ),
-                  ),
-                ),
-                SizedBox(height: 13),
-          
-                // Carrossel de álbuns
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: albuns.map((item) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    item['image'],
-                                    fit: BoxFit.cover,
-                                    width: 86,
-                                    height: 97,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Positioned(
-              left: 0,
-              bottom: 0,
-              right: 0,
-              child: MusicWidget(), )
-        ],
+            SizedBox(height: 13),
+
+            _buildMusicCarousel(),
+            SizedBox(height: 13),
+
+            // Título de "Artistas"
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                'Artistas',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: "ABeeZee",
+                ),
+              ),
+            ),
+            SizedBox(height: 13),
+
+            // Carrossel de álbuns
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: albuns.map((item) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                item['image'],
+                                fit: BoxFit.cover,
+                                width: 86,
+                                height: 97,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
