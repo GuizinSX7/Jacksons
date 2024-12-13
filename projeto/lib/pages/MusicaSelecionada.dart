@@ -7,8 +7,10 @@ class ToggleIcon extends StatefulWidget {
   final Color activeColor;
   final Color inactiveColor;
   final double size;
+  late int musicaIndex;
 
   ToggleIcon({
+    required this.musicaIndex,
     required this.icon,
     this.activeColor = MyColors.roxo,
     this.inactiveColor = Colors.white,
@@ -24,6 +26,8 @@ class _ToggleIconState extends State<ToggleIcon> {
 
   @override
   Widget build(BuildContext context) {
+    widget.musicaIndex = ModalRoute.of(context)?.settings.arguments as int;
+
     return GestureDetector(
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
@@ -44,7 +48,9 @@ class _ToggleIconState extends State<ToggleIcon> {
 }
 
 class Musicaselecionada extends StatefulWidget {
-  const Musicaselecionada({super.key});
+  final int musicaIndex;
+
+  Musicaselecionada({Key? key, required this.musicaIndex}) : super(key: key);
 
   @override
   State<Musicaselecionada> createState() => _MyWidgetState();
@@ -81,91 +87,90 @@ final List<Map<String, dynamic>> musicas = [
     'nome': 'Era um garoto que como...',
     'musica': 'Engenheiros_Hawaii.mp3',
   },
-    {
+  {
     'image': 'assets/Cirice.jpg',
     'banda': 'Ghost',
     'nome': 'Cirice',
     'musica': 'Cirice.mp3',
   },
-    {
+  {
     'image': 'assets/SystemofaDownToxicityalbumcover.jpg',
     'banda': 'System Of Down',
     'nome': 'Toxicity',
     'musica': 'Toxicity.mp3',
   },
-    {
+  {
     'image': 'assets/life_eternal.jpg',
     'banda': 'Ghost',
     'nome': 'Life Eternal',
     'musica': 'Life Eternal.mp3',
   },
-    {
+  {
     'image': 'assets/he_is.jpg',
     'banda': 'Ghost',
     'nome': 'He is',
     'musica': 'He Is.mp3',
   },
-    {
+  {
     'image': 'assets/kamaitachi.jpg',
     'banda': 'Kamaitachi',
     'nome': 'Sabbat',
     'musica': 'Sabbat.mp3',
   },
-    {
+  {
     'image': 'assets/veigh.png',
     'banda': 'Veigh',
     'nome': 'Jeito Bandido',
     'musica': 'JEITO BANDIDO.mp3',
   },
-    {
+  {
     'image': 'assets/kanyewest.jpg',
     'banda': 'Kanye West',
     'nome': 'POWER',
     'musica': 'POWER.mp3',
   },
-    {
+  {
     'image': 'assets/Devils_Guns.jpg',
     'banda': 'Guns and Roses',
     'nome': 'This is Love ',
     'musica': 'This I Love.mp3',
   },
-    {
+  {
     'image': 'assets/psychosocial.png',
     'banda': 'Slipknot',
     'nome': 'Psychosocial',
     'musica': 'Psychosocial.mp3',
   },
-    {
+  {
     'image': 'assets/devil_in_i.jpg',
     'banda': 'Slipknot',
     'nome': 'The Devil in I ',
     'musica': 'Devil_in_I.mp3',
   },
-      {
+  {
     'image': 'assets/people=shit.jpg',
     'banda': 'Slipknot',
     'nome': 'People = Shit ',
     'musica': 'People Shit.mp3',
   },
-      {
+  {
     'image': 'assets/slipknot_image.jpg',
     'banda': 'Slipknot',
     'nome': 'Snuff',
     'musica': 'Snuff.mp3',
   },
-        {
+  {
     'image': 'assets/ussewa.jpg',
     'banda': 'Ado',
     'nome': 'Usseewa',
     'musica': 'Ussewa.mp3',
   },
-
 ];
 
 class _MyWidgetState extends State<Musicaselecionada> {
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
-  int _currentMusicIndex = 0; // Índice da música atual
+  late int _currentMusicIndex;
   double _sliderValue = 0.0;
   Duration _duration = Duration.zero;
   Duration _currentPosition = Duration.zero;
@@ -174,6 +179,7 @@ class _MyWidgetState extends State<Musicaselecionada> {
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
+    _currentMusicIndex = widget.musicaIndex;
 
     // Listeners para duração e posição da música
     _audioPlayer.onDurationChanged.listen((d) {
@@ -299,7 +305,6 @@ class _MyWidgetState extends State<Musicaselecionada> {
                       ),
                       onTap: () {},
                     ),
-
                   ],
                 ),
               ),
@@ -312,7 +317,11 @@ class _MyWidgetState extends State<Musicaselecionada> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(currentMusic['image'], width: 350, height: 350,),
+                      child: Image.asset(
+                        currentMusic['image'],
+                        width: 350,
+                        height: 350,
+                      ),
                     ),
                   ],
                 ),
@@ -325,7 +334,8 @@ class _MyWidgetState extends State<Musicaselecionada> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(currentMusic['image'], width: 80, height: 80),
+                      child: Image.asset(currentMusic['image'],
+                          width: 80, height: 80),
                     ),
                     const SizedBox(width: 12),
                     Column(
@@ -349,7 +359,10 @@ class _MyWidgetState extends State<Musicaselecionada> {
                       ],
                     ),
                     const SizedBox(width: 30),
-                  ToggleIcon(icon: Icons.favorite),
+                    ToggleIcon(
+                      icon: Icons.favorite,
+                      musicaIndex: 0,
+                    ),
                   ],
                 ),
               ),
@@ -399,7 +412,11 @@ class _MyWidgetState extends State<Musicaselecionada> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ToggleIcon(icon: Icons.bluetooth, activeColor: const Color.fromARGB(255, 70, 113, 255)), 
+                  ToggleIcon(
+                    icon: Icons.bluetooth,
+                    activeColor: const Color.fromARGB(255, 70, 113, 255),
+                    musicaIndex: 0,
+                  ),
                   const SizedBox(width: 10),
                   IconButton(
                     icon: const Icon(Icons.fast_rewind,
@@ -420,7 +437,10 @@ class _MyWidgetState extends State<Musicaselecionada> {
                     onPressed: _nextMusic,
                   ),
                   const SizedBox(width: 10),
-                  ToggleIcon(icon: Icons.repeat), 
+                  ToggleIcon(
+                    icon: Icons.repeat,
+                    musicaIndex: 0,
+                  ),
                 ],
               ),
             ],

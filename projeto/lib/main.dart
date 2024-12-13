@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         '/Home': (context) => Home(), 
         '/Musics': (context) => Musics(), 
         '/Podcasts': (context) => Podcasts(), 
-        '/MusicaSelecionada' : (context) => Musicaselecionada(),
+        '/MusicaSelecionada' : (context) => Musicaselecionada(musicaIndex: 6,),
         '/Pesquisa': (context) => Pesquisa(),
         '/Musico' : (context) => Musico(),
         '/Playlist' : (context) => Playlist(),

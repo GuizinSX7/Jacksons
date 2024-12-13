@@ -60,9 +60,10 @@ class _MusicoState extends State<Musico> {
                         bottom: 100, // Adjust this value as needed
                         left: 16, // Adjust this value as needed
                         child:GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/Home');
-                          },
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/Home', (route) => false);
+                    },
                           child: Icon(
                             Icons.arrow_back,
                             color: Colors.white,

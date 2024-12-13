@@ -11,11 +11,11 @@ class Musics extends StatefulWidget {
 
 class _MusicsState extends State<Musics> {
   final List<Map<String, dynamic>> musicas = [
-    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Cirice'},
+    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Cirice', 'id': 5},
     {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Hypnotize'},
-    {'image': 'assets/Devils_Guns.jpg', 'route': '/MusicaSelecionada', 'artista': 'guns&roses', 'nome': 'This is love'},
-    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Aerials'},
-    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'He is'},
+    {'image': 'assets/Devils_Guns.jpg', 'route': '/MusicaSelecionada', 'artista': 'guns&roses', 'nome': 'This is love', 'id': 12},
+    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Aerials', 'id': 1},
+    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'He is', 'id': 8},
   ];
 
   final List<Map<String, dynamic>> albuns = [
@@ -106,7 +106,7 @@ class _MusicsState extends State<Musics> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Text(
-                'Artistas',
+                'Albuns',
                 style: TextStyle(
                   fontSize: 18,
                   fontFamily: "ABeeZee",

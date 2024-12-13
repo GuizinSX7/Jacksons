@@ -11,11 +11,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<Map<String, dynamic>> musicas = [
-    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Cirice'},
-    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Toxicity'},
-    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Life Eternal'},
-    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Aerials'},
-    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'He is'},
+    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Cirice', 'id': 5},
+    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Toxicity', 'id': 6},
+    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'Life Eternal', 'id': 7},
+    {'image': 'assets/SOAD.jfif', 'route': '/MusicaSelecionada', 'artista': 'SOAD', 'nome': 'Aerials', 'id': 1},
+    {'image': 'assets/Ghostss.jfif', 'route': '/MusicaSelecionada', 'artista': 'Ghost', 'nome': 'He is', 'id': 8},
   ];
 
   final List<Map<String, dynamic>> artistas = [
@@ -45,16 +45,20 @@ class _HomeState extends State<Home> {
         title: Appbar(),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: Column(
           children: [
-            Text(
-              'Músicas mais tocadas em 2024',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: "ABeeZee",
+
+            Container(
+              child: Text(
+                'Músicas mais tocadas em 2024',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: "ABeeZee",
+                ),
+                textAlign: TextAlign.right,
               ),
-              textAlign: TextAlign.left,
+              alignment: Alignment(-0.65 , 0),
             ),
             SizedBox(height: 13),
             _buildMusicCarousel(),
@@ -68,7 +72,7 @@ class _HomeState extends State<Home> {
                   ),
                   textAlign: TextAlign.left,
                 ),
-                alignment: Alignment(-0.65 , 0),
+                alignment: Alignment(-0.75 , 0),
              ),
             SizedBox(height: 13),
             _buildMusicCarousel(),
@@ -134,7 +138,7 @@ class _HomeState extends State<Home> {
           children: musicas.map((item) {
             return GestureDetector(
               onTap: () {
-                Navigator.pushNamedAndRemoveUntil(context, item['route'], (route) => false);
+                Navigator.pushNamedAndRemoveUntil(context, item['route'], (Route<dynamic> route) => false, arguments: item['id']);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
